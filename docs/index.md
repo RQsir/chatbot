@@ -1,17 +1,45 @@
-# 主页
+# 目录
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+* 一-涉及知识
+* 二-初识 NLTK 库
+* 三-语料与词汇资源
+* 四-何须动手？完全自动化对语料做词性标注
+* 五-自然语言处理中的文本分类
+* 六-教你怎么从一句话里提取出十句话的信息
+* 七-文法分析还是基于特征好啊
+* 八-重温自然语言处理
+* 九-聊天机器人应该怎么做
+* 十-半个小时搞定词性标注与关键词提取
+* 十一-0字节存储海量语料资源
+* 十二-教你如何利用强大的中文语言技术平台做依存句法和语义依存分析
+* 十三-把语言模型探究到底
+* 十四-探究中文分词的艺术
+* 十五-一篇文章读懂拿了图灵奖和诺贝尔奖的概率图模型
+* 十六-大话自然语言处理中的囊中取物
+* 十七-让机器做词性自动标注的具体方法
+* 十八-神奇算法之句法分析树的生成
+* 十九-机器人是怎么理解“日后再说”的
+* 二十-语义角色标注的基本方法
+* 二十一-比TF-IDF更好的隐含语义索引模型是个什么鬼
+* 二十二-神奇算法之人工神经网络
+* 二十三-用CNN做深度学习
+* 二十四-将深度学习应用到NLP
+* 二十五- google 的文本挖掘深度学习工具 word2vec 的实现原理
+* 二十六-图解递归神经网络(RNN)
+* 二十七-用深度学习来做自动问答的一般方法
+* 二十八-脑洞大开：基于美剧字幕的聊天语料库建设方案
+* 二十九-重磅：近1GB的三千万聊天语料供出
+* 三十-第一版聊天机器人诞生——吃了字幕长大的小二兔
+* 三十一-如何把网站流量导向小二兔机器人
+* 三十二-用三千万影视剧字幕语料库生成词向量
+* 三十三-两套代码详解 LSTM-RNN ——有记忆的神经网络
+* 三十四-最快的深度学习框架torch
+* 三十五-一个 lstm 单元让聊天机器人学会甄嬛体
+* 三十六-深入理解 tensorflow 的session 和 graph
+* 三十七-一张图了解 tensorflow 中的线性回归工作原理
+* 三十八-原来聊天机器人是这么做出来的
+* 三十九-满腔热血：在家里搭建一台GPU云服务共享给人工智能和大数据爱好者
+* 四十-视频教程之开篇宣言与知识点梳理
+* 四十一-视频教程之环境搭建与python基础
+* 四十二-(重量级长文)从理论到实践开发自己的聊天机器人
+* 四十三-继续从理论到实践开发自己的聊天机器人
