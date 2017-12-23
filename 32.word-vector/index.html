@@ -1,0 +1,1242 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.2.1">
+    
+    
+      
+        <title>三十二-用影视剧字幕语料库生成词向量 - 自己动手做聊天机器人</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.41c6761c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="自己动手做聊天机器人" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                自己动手做聊天机器人
+              </span>
+              <span class="md-header-nav__topic">
+                三十二-用影视剧字幕语料库生成词向量
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    自己动手做聊天机器人
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../1.knowledge/" title="一-涉及知识" class="md-nav__link">
+      一-涉及知识
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../2.nltk/" title="二-初识NLTK库" class="md-nav__link">
+      二-初识NLTK库
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../3.corpus/" title="三-语料与词汇资源" class="md-nav__link">
+      三-语料与词汇资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../4.pos-tagging/" title="四-自动化词性标注" class="md-nav__link">
+      四-自动化词性标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../5.text-classification/" title="五-文本分类" class="md-nav__link">
+      五-文本分类
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../6.extract/" title="六-结构化提取" class="md-nav__link">
+      六-结构化提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../7.grammar/" title="七-文法分析" class="md-nav__link">
+      七-文法分析
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../8.nlp-review/" title="八-自然语言处理" class="md-nav__link">
+      八-自然语言处理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../9.chatbot/" title="九-聊天机器人怎么做" class="md-nav__link">
+      九-聊天机器人怎么做
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-nav__link">
+      十-词性标注与关键词提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../11.storage/" title="十一-0字节存储海量语料资源" class="md-nav__link">
+      十一-0字节存储海量语料资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../12.semantic-dependency/" title="十二-用语言云分析依存句法和语义依存" class="md-nav__link">
+      十二-用语言云分析依存句法和语义依存
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../13.linguistic-model/" title="十三-探究语言模型" class="md-nav__link">
+      十三-探究语言模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../14.participles-art/" title="十四-探究中文分词" class="md-nav__link">
+      十四-探究中文分词
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../15.probabilistic-model/" title="十五-概率图模型" class="md-nav__link">
+      十五-概率图模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../16.bag-material/" title="十六-自然语言处理中的囊中取物" class="md-nav__link">
+      十六-自然语言处理中的囊中取物
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../17.specific-mehtod/" title="十七-词性自动标注" class="md-nav__link">
+      十七-词性自动标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../18.tree/" title="十八-生成句法分析树" class="md-nav__link">
+      十八-生成句法分析树
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../19.understand/" title="十九-机器人是怎么理解“日后再说”的" class="md-nav__link">
+      十九-机器人是怎么理解“日后再说”的
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../20.pos-base-method/" title="二十-语义角色标注" class="md-nav__link">
+      二十-语义角色标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../21.tf-idf/" title="二十一-隐含语义索引模型" class="md-nav__link">
+      二十一-隐含语义索引模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../22.artificial-neural-network/" title="二十二-人工神经网络" class="md-nav__link">
+      二十二-人工神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../23.cnn/" title="二十三-用CNN做深度学习" class="md-nav__link">
+      二十三-用CNN做深度学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../24.nlp-deep-learning/" title="二十四-将深度学习应用到NLP" class="md-nav__link">
+      二十四-将深度学习应用到NLP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../25.word2vec/" title="二十五-word2vec的实现原理" class="md-nav__link">
+      二十五-word2vec的实现原理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../26.rnn/" title="二十六-递归神经网络(RNN)" class="md-nav__link">
+      二十六-递归神经网络(RNN)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../27.auto-faq/" title="二十七-自动问答" class="md-nav__link">
+      二十七-自动问答
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../28.subtitle-corpus/" title="二十八-基于美剧字幕的聊天语料库建设" class="md-nav__link">
+      二十八-基于美剧字幕的聊天语料库建设
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../29.corpus-1g/" title="二十九-近1GB的三千万聊天语料" class="md-nav__link">
+      二十九-近1GB的三千万聊天语料
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../30.tiny-rabbit/" title="三十-第一版聊天机器人小二兔" class="md-nav__link">
+      三十-第一版聊天机器人小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../31.directive/" title="三十一-把网站流量导向小二兔" class="md-nav__link">
+      三十一-把网站流量导向小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        三十二-用影视剧字幕语料库生成词向量
+      </label>
+    
+    <a href="./" title="三十二-用影视剧字幕语料库生成词向量" class="md-nav__link md-nav__link--active">
+      三十二-用影视剧字幕语料库生成词向量
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="对语料库切词" class="md-nav__link">
+    对语料库切词
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#word2vec" title="用word2vec生成词向量" class="md-nav__link">
+    用word2vec生成词向量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../33.lstm-rnn/" title="三十三-LSTM-RNN—有记忆的神经网络" class="md-nav__link">
+      三十三-LSTM-RNN—有记忆的神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../34.torch/" title="三十四-深度学习框架torch" class="md-nav__link">
+      三十四-深度学习框架torch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../35.lstm-learning/" title="三十五-一学会甄嬛体" class="md-nav__link">
+      三十五-一学会甄嬛体
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../36.tensorflow-session-graph/" title="三十六-tensorflow的session和graph" class="md-nav__link">
+      三十六-tensorflow的session和graph
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../37.tensorflow-lr/" title="三十七-tensorflow中的线性回归" class="md-nav__link">
+      三十七-tensorflow中的线性回归
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../38.make-chatbot/" title="三十八-聊天机器人构建流程" class="md-nav__link">
+      三十八-聊天机器人构建流程
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../39.gpu-server/" title="三十九-搭建一台GPU共享云服务" class="md-nav__link">
+      三十九-搭建一台GPU共享云服务
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../40.video-knowledge-point/" title="四十-视频之开篇宣言与知识点" class="md-nav__link">
+      四十-视频之开篇宣言与知识点
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../41.video-python/" title="四十一-视频之环境搭建与python基础" class="md-nav__link">
+      四十一-视频之环境搭建与python基础
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../42.practice/" title="四十二-从理论到实践开发聊天机器人1" class="md-nav__link">
+      四十二-从理论到实践开发聊天机器人1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../43.practice2/" title="四十三-从理论到实践开发聊天机器人2" class="md-nav__link">
+      四十三-从理论到实践开发聊天机器人2
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="对语料库切词" class="md-nav__link">
+    对语料库切词
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#word2vec" title="用word2vec生成词向量" class="md-nav__link">
+    用word2vec生成词向量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>三十二-用影视剧字幕语料库生成词向量</h1>
+                
+                <p>利用搜索引擎的原理实现的聊天机器人效果差强人意，为了对庞大的语料库进一步运用，打算利用LSTM-RNN来做训练，第一步需要把中文语料转成算法可以识别的向量形式，最强大的word embedding工具莫过于word2vec了，本节跟大家分享我是怎么用三千万影视剧字幕语料库生成词向量的 </p>
+<h3 id="_1">对语料库切词<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>因为word2vec的输入需要是切好词的文本文件，但我们的影视剧字幕语料库是回车换行分隔的完整句子，所以我们先对其做切词，有关中文切词的方法请见《教你成为全栈工程师(Full Stack Developer) 三十四-基于python的高效中文文本切词》，为了对影视剧字幕语料库切词，我们来创建word_segment.py文件，内容如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span> <span class="s2">&quot;utf-8&quot;</span> <span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">from</span> <span class="nn">jieba</span> <span class="kn">import</span> <span class="n">analyse</span>
+
+<span class="k">def</span> <span class="nf">segment</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+    <span class="n">input_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="n">segments</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="nb">str</span> <span class="ow">in</span> <span class="n">seg_list</span><span class="p">:</span>
+                <span class="n">segments</span> <span class="o">=</span> <span class="n">segments</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span>
+            <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">input_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="mi">3</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;Usage: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;input output&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">segment</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</pre></div>
+</td></tr></table>
+
+<p>使用方法：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>python word_segment.py subtitle/raw_subtitles/subtitle.corpus segment_result
+</pre></div>
+</td></tr></table>
+
+<p>生成的segment_result文件内容就像下面的样子：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>……
+这件 事 对不起 我 并 不 直率 只有 在 梦 中 才能 表白 在 思绪 错乱 之前 现在 只想 马上 见到 你 夜晚 在 月光 下 哭泣 深夜里 无法 打电话 给 你 纯情 的 我 该 怎么办 心 就 如 万花筒 一般 月亮 的 光芒 引导 着 我 与 你 相会 无数次 星座 闪耀 的 瞬间 来 占卜 恋爱 的 方向 同样 都 是 在 地球 上 出生 的 奇迹 的 罗曼史 我 相信 奇迹 的 罗曼史 小小 兔 在 哪 你 在 哪里 找到 了 吗 到处 都 没 看到 难道 被 敌人 … 总之 分头 寻找 继续 找 吧 暗黑 女王   Black   Lady 的 诞生 不 愉快 的 往日 回忆 会 在 内心深处 留下 创伤 想起 坏心肠 的 妈妈 及 冷酷 的 父亲 吧 是 青蛙 会 跌倒 的 谁 叫 你 不 听 妈妈 的话 不 可以 哭 妈妈 最 讨厌 了 爸爸   拉 我 起来 自己 站 起来 不向 你 伸出手 的 父母 就是 不爱 你 的 证据 是 你 自己 跌倒 不好 站 起来 快 回想起来 那些 更 可恨 的 事情 吧 怎么 一个 人站 着 发呆 今天 是 我 的 生日 生日 ？ 对 呀 可是 爸
+……
+</pre></div>
+</td></tr></table>
+
+<p>统计一下这个文件如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">[</span>root@centos $<span class="o">]</span> ls -lh segment_result
+-rw-r--r-- <span class="m">1</span> lichuang staff <span class="m">1</span>.1G <span class="m">10</span>  <span class="m">9</span> <span class="m">18</span>:59 segment_result
+<span class="o">[</span>root@centos $<span class="o">]</span> wc segment_result
+         <span class="m">0</span>  <span class="m">191925623</span> <span class="m">1093268485</span> segment_result
+</pre></div>
+</td></tr></table>
+
+<p>0行是因为没有在行尾加回车符，一共是191925623列，1093268485个字符</p>
+<h3 id="word2vec">用word2vec生成词向量<a class="headerlink" href="#word2vec" title="Permanent link">&para;</a></h3>
+<p>想了解word2vec的原理请见《自己动手做聊天机器人 二十五-google的文本挖掘深度学习工具word2vec的实现原理》，如果因为被墙获取不到word2vec可以从https://github.com/warmheartli/ChatBotCourse/tree/master/word2vec获取，直接make编译好后会生成一些二进制文件，我要用到的是word2vec</p>
+<p>执行</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>./word2vec -train ../segment_result -output vectors.bin -cbow <span class="m">1</span> -size <span class="m">200</span> -window <span class="m">8</span> -negative <span class="m">25</span> -hs <span class="m">0</span> -sample 1e-4 -threads <span class="m">20</span> -binary <span class="m">1</span> -iter <span class="m">15</span>
+Starting training using file ../segment_result
+Vocab size: <span class="m">260499</span>
+Words in train file: <span class="m">191353657</span>
+Alpha: <span class="m">0</span>.039254  Progress: <span class="m">21</span>.50%  Words/thread/sec: <span class="m">96</span>.67k
+</pre></div>
+</td></tr></table>
+
+<p>生成的vectors.bin就是我们想要的词向量，只不过是二进制格式，这时我们可以用word2vec自带的distance工具来验证一下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>./distance vectors.bin
+Enter word or sentence <span class="o">(</span>EXIT to <span class="nb">break</span><span class="o">)</span>: 漂亮
+
+Word: 漂亮  Position in vocabulary: <span class="m">722</span>
+
+Word       Cosine distance
+------------------------------------------------------------------------
+很漂亮     <span class="m">0</span>.532610
+厉害      <span class="m">0</span>.440603
+身材      <span class="m">0</span>.430269
+beautiful       <span class="m">0</span>.413831
+棒       <span class="m">0</span>.410241
+帅呆了     <span class="m">0</span>.409414
+干得      <span class="m">0</span>.407550
+不错      <span class="m">0</span>.402978
+好美      <span class="m">0</span>.401329
+可爱      <span class="m">0</span>.399667
+猕猴桃     <span class="m">0</span>.391512
+好       <span class="m">0</span>.388109
+配当      <span class="m">0</span>.387999
+真棒      <span class="m">0</span>.387924
+太棒了     <span class="m">0</span>.384184
+真不错     <span class="m">0</span>.377484
+……
+</pre></div>
+</td></tr></table>
+
+<p>词向量二进制文件的格式及加载</p>
+<p>word2vec生成的词向量二进制格式是这样的：</p>
+<p>词数目(空格)向量维度
+第一个词(空格)词向量(大小为200<em>sizeof(float))第二个词(空格)词向量(大小为200</em>sizeof(float))……
+所以写了一个加载词向量二进制文件的python脚本，后面会用到，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span> <span class="s2">&quot;utf-8&quot;</span> <span class="p">)</span>
+
+<span class="n">max_w</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">float_size</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">def</span> <span class="nf">load_vectors</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;begin load vectors&quot;</span>
+
+    <span class="n">input_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 获取词表数目及向量维度</span>
+    <span class="n">words_and_size</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="n">words_and_size</span> <span class="o">=</span> <span class="n">words_and_size</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="nb">long</span><span class="p">(</span><span class="n">words_and_size</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">long</span><span class="p">(</span><span class="n">words_and_size</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span> <span class="s2">&quot;words =&quot;</span><span class="p">,</span> <span class="n">words</span>
+    <span class="k">print</span> <span class="s2">&quot;size =&quot;</span><span class="p">,</span> <span class="n">size</span>
+
+    <span class="n">word_vector</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># 读取一个词</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">word</span> <span class="o">+</span> <span class="n">c</span>
+            <span class="k">if</span> <span class="bp">False</span> <span class="o">==</span> <span class="n">c</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">max_w</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="c1"># 读取词向量</span>
+        <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">200</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">float_size</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">weight</span><span class="p">,)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+            <span class="n">vector</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
+
+        <span class="c1"># 将词及其对应的向量存到dict中</span>
+        <span class="n">word_vector</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">vector</span>
+
+    <span class="n">input_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">print</span> <span class="s2">&quot;load vectors finish&quot;</span>
+    <span class="k">return</span> <span class="n">word_vector</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="mi">2</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;Usage: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;vectors.bin&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">load_vectors</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="sa">u</span><span class="s1">&#39;真的&#39;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<p>运行方式如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>python word_vectors_loader.py vectors.bin
+</pre></div>
+</td></tr></table>
+
+<p>效果如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">begin</span> <span class="n">load</span> <span class="n">vectors</span>
+<span class="n">words</span> <span class="o">=</span> <span class="mi">49804</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">load</span> <span class="n">vectors</span> <span class="n">finish</span>
+<span class="p">[</span><span class="o">-</span><span class="mf">1.09570336</span>  <span class="mf">2.03501272</span>  <span class="mf">0.3151325</span>   <span class="mf">0.17603125</span>  <span class="mf">0.30261561</span>  <span class="mf">0.15273243</span>
+ <span class="o">-</span><span class="mf">0.6409803</span>   <span class="mf">0.06317</span>     <span class="mf">0.20631203</span>  <span class="mf">0.22687016</span>  <span class="mf">0.59229285</span> <span class="o">-</span><span class="mf">1.10883808</span>
+  <span class="mf">1.12569952</span>  <span class="mf">0.16838464</span>  <span class="mf">1.27895844</span> <span class="o">-</span><span class="mf">1.18480754</span>  <span class="mf">1.6270808</span>  <span class="o">-</span><span class="mf">2.62790298</span>
+  <span class="mf">0.43835989</span> <span class="o">-</span><span class="mf">0.21364243</span>  <span class="mf">0.05743926</span> <span class="o">-</span><span class="mf">0.77541786</span> <span class="o">-</span><span class="mf">0.19709823</span>  <span class="mf">0.33360079</span>
+  <span class="mf">0.43415883</span> <span class="o">-</span><span class="mf">1.28643405</span> <span class="o">-</span><span class="mf">0.95402282</span>  <span class="mf">0.01350032</span> <span class="o">-</span><span class="mf">0.20490573</span>  <span class="mf">0.80880177</span>
+ <span class="o">-</span><span class="mf">1.47243023</span> <span class="o">-</span><span class="mf">0.09673293</span>  <span class="mf">0.05514769</span>  <span class="mf">1.00915158</span> <span class="o">-</span><span class="mf">0.11268988</span>  <span class="mf">0.68446255</span>
+  <span class="mf">0.08493964</span>  <span class="mf">0.27009442</span>  <span class="mf">0.33748865</span> <span class="o">-</span><span class="mf">0.03105624</span> <span class="o">-</span><span class="mf">0.19079798</span>  <span class="mf">0.46264866</span>
+ <span class="o">-</span><span class="mf">0.53616458</span> <span class="o">-</span><span class="mf">0.35288206</span>  <span class="mf">0.76765436</span> <span class="o">-</span><span class="mf">1.0328685</span>   <span class="mf">0.92285776</span> <span class="o">-</span><span class="mf">0.97560757</span>
+  <span class="mf">0.5561474</span>  <span class="o">-</span><span class="mf">0.05574715</span> <span class="o">-</span><span class="mf">0.1951212</span>   <span class="mf">0.5258466</span>  <span class="o">-</span><span class="mf">0.07396954</span>  <span class="mf">1.42198348</span>
+  <span class="mf">1.12321162</span>  <span class="mf">0.03646624</span> <span class="o">-</span><span class="mf">1.54316568</span>  <span class="mf">0.34798017</span>  <span class="mf">0.64197171</span> <span class="o">-</span><span class="mf">0.57232529</span>
+  <span class="mf">0.14402699</span>  <span class="mf">1.75856864</span> <span class="o">-</span><span class="mf">0.72602183</span> <span class="o">-</span><span class="mf">1.37281013</span>  <span class="mf">0.73600221</span>  <span class="mf">0.4458617</span>
+ <span class="o">-</span><span class="mf">1.32631493</span>  <span class="mf">0.25921029</span> <span class="o">-</span><span class="mf">0.97459841</span> <span class="o">-</span><span class="mf">1.4394536</span>   <span class="mf">0.18724895</span> <span class="o">-</span><span class="mf">0.74114919</span>
+  <span class="mf">1.50315142</span>  <span class="mf">0.56819481</span>  <span class="mf">0.37238419</span> <span class="o">-</span><span class="mf">0.0501433</span>   <span class="mf">0.36490002</span> <span class="o">-</span><span class="mf">0.14456141</span>
+ <span class="o">-</span><span class="mf">0.15503241</span> <span class="o">-</span><span class="mf">0.04504468</span>  <span class="mf">1.18127966</span>  <span class="mf">1.465729</span>   <span class="o">-</span><span class="mf">0.13834922</span> <span class="o">-</span><span class="mf">0.1232961</span>
+ <span class="o">-</span><span class="mf">0.14927664</span>  <span class="mf">0.67862391</span>  <span class="mf">2.46567917</span> <span class="o">-</span><span class="mf">1.10682511</span>  <span class="mf">0.71275675</span>  <span class="mf">1.04118025</span>
+  <span class="mf">0.23883103</span> <span class="o">-</span><span class="mf">1.99175942</span>  <span class="mf">0.40641201</span>  <span class="mf">0.73883104</span> <span class="o">-</span><span class="mf">0.37824577</span>  <span class="mf">0.88882846</span>
+ <span class="o">-</span><span class="mf">0.87234962</span>  <span class="mf">0.71112823</span>  <span class="mf">0.33647302</span> <span class="o">-</span><span class="mf">1.2701565</span>  <span class="o">-</span><span class="mf">1.15415645</span>  <span class="mf">1.41575384</span>
+ <span class="o">-</span><span class="mf">2.01556969</span> <span class="o">-</span><span class="mf">0.85669023</span> <span class="o">-</span><span class="mf">0.0378141</span>  <span class="o">-</span><span class="mf">0.60975027</span>  <span class="mf">0.0738821</span>   <span class="mf">0.19649875</span>
+  <span class="mf">0.02519603</span> <span class="o">-</span><span class="mf">0.78310513</span>  <span class="mf">0.40809572</span>  <span class="mf">0.55079561</span>  <span class="mf">1.79861426</span> <span class="o">-</span><span class="mf">0.01188554</span>
+ <span class="o">-</span><span class="mf">0.14823757</span> <span class="o">-</span><span class="mf">0.97098011</span> <span class="o">-</span><span class="mf">2.75159121</span>  <span class="mf">1.52366722</span> <span class="o">-</span><span class="mf">0.41585007</span>  <span class="mf">0.78664345</span>
+  <span class="mf">0.43792239</span>  <span class="mf">1.03834045</span>  <span class="mf">1.18758595</span>  <span class="mf">0.18793568</span> <span class="o">-</span><span class="mf">1.44434023</span> <span class="o">-</span><span class="mf">1.55205989</span>
+  <span class="mf">0.24251698</span>  <span class="mf">1.05706048</span> <span class="o">-</span><span class="mf">1.52376628</span> <span class="o">-</span><span class="mf">0.60226047</span> <span class="o">-</span><span class="mf">0.41849345</span> <span class="o">-</span><span class="mf">0.30082899</span>
+ <span class="o">-</span><span class="mf">1.32461691</span>  <span class="mf">0.29701442</span>  <span class="mf">0.36680841</span> <span class="o">-</span><span class="mf">0.72046149</span> <span class="o">-</span><span class="mf">0.16455257</span> <span class="o">-</span><span class="mf">0.02307599</span>
+ <span class="o">-</span><span class="mf">0.74143982</span>  <span class="mf">0.10319671</span> <span class="o">-</span><span class="mf">0.5436908</span>  <span class="o">-</span><span class="mf">0.85527682</span> <span class="o">-</span><span class="mf">0.81110024</span> <span class="o">-</span><span class="mf">1.14968359</span>
+ <span class="o">-</span><span class="mf">1.45617366</span>  <span class="mf">0.57568634</span> <span class="o">-</span><span class="mf">1.10673392</span> <span class="o">-</span><span class="mf">0.48830599</span>  <span class="mf">1.38728273</span> <span class="o">-</span><span class="mf">0.46238521</span>
+  <span class="mf">1.40288961</span> <span class="o">-</span><span class="mf">0.92997569</span>  <span class="mf">0.90154368</span>  <span class="mf">0.09381612</span> <span class="o">-</span><span class="mf">0.61220604</span> <span class="o">-</span><span class="mf">0.40820527</span>
+  <span class="mf">1.2660408</span>  <span class="o">-</span><span class="mf">1.02075434</span>  <span class="mf">0.98662543</span>  <span class="mf">0.81696391</span>  <span class="mf">0.06962785</span>  <span class="mf">0.83282673</span>
+ <span class="o">-</span><span class="mf">0.12462004</span>  <span class="mf">1.16540051</span>  <span class="mf">0.10254569</span>  <span class="mf">1.03875697</span>  <span class="mf">0.05073663</span>  <span class="mf">1.50608146</span>
+  <span class="mf">0.49252063</span>  <span class="mf">0.09693919</span>  <span class="mf">0.38897502</span> <span class="o">-</span><span class="mf">0.0673333</span>  <span class="o">-</span><span class="mf">0.30629408</span> <span class="o">-</span><span class="mf">2.1759603</span>
+  <span class="mf">0.5477249</span>  <span class="o">-</span><span class="mf">1.46633601</span>  <span class="mf">1.54695141</span> <span class="o">-</span><span class="mf">0.83080739</span> <span class="o">-</span><span class="mf">0.49649978</span>  <span class="mf">1.05921662</span>
+ <span class="o">-</span><span class="mf">0.60124737</span> <span class="o">-</span><span class="mf">0.72645563</span> <span class="o">-</span><span class="mf">1.44115663</span> <span class="o">-</span><span class="mf">0.6903789</span>   <span class="mf">0.38817915</span> <span class="o">-</span><span class="mf">0.11854757</span>
+ <span class="o">-</span><span class="mf">0.18087701</span> <span class="o">-</span><span class="mf">0.41152322</span> <span class="o">-</span><span class="mf">0.98559368</span> <span class="o">-</span><span class="mf">1.46712041</span>  <span class="mf">1.63777673</span> <span class="o">-</span><span class="mf">0.64418262</span>
+ <span class="o">-</span><span class="mf">0.56800991</span>  <span class="mf">1.79656076</span> <span class="o">-</span><span class="mf">0.80431151</span>  <span class="mf">0.99533188</span>  <span class="mf">0.06813133</span> <span class="o">-</span><span class="mf">0.73489577</span>
+ <span class="o">-</span><span class="mf">0.67567319</span>  <span class="mf">0.64855355</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="_2">总结<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>考虑到运行时间的关系，以上示例中多数是我抽取了部分语料数据，因此你真正执行时数值可能会不一样。至此，我们已经做到用影视剧字幕语料库(获取方式《自己动手做聊天机器人 二十九-重磅：近1GB的三千万聊天语料供出》)生成词向量并能够通过python加载起来，下一步就是如何运用了，敬请关注</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../31.directive/" title="三十一-把网站流量导向小二兔" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                三十一-把网站流量导向小二兔
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../33.lstm-rnn/" title="三十三-LSTM-RNN—有记忆的神经网络" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                三十三-LSTM-RNN—有记忆的神经网络
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.6cdc17f0.js"></script>
+      
+      <script>app.initialize({version:"0.17.2",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

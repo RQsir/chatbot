@@ -1,0 +1,1147 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.2.1">
+    
+    
+      
+        <title>十一-0字节存储海量语料资源 - 自己动手做聊天机器人</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.41c6761c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="自己动手做聊天机器人" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                自己动手做聊天机器人
+              </span>
+              <span class="md-header-nav__topic">
+                十一-0字节存储海量语料资源
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    自己动手做聊天机器人
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../1.knowledge/" title="一-涉及知识" class="md-nav__link">
+      一-涉及知识
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../2.nltk/" title="二-初识NLTK库" class="md-nav__link">
+      二-初识NLTK库
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../3.corpus/" title="三-语料与词汇资源" class="md-nav__link">
+      三-语料与词汇资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../4.pos-tagging/" title="四-自动化词性标注" class="md-nav__link">
+      四-自动化词性标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../5.text-classification/" title="五-文本分类" class="md-nav__link">
+      五-文本分类
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../6.extract/" title="六-结构化提取" class="md-nav__link">
+      六-结构化提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../7.grammar/" title="七-文法分析" class="md-nav__link">
+      七-文法分析
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../8.nlp-review/" title="八-自然语言处理" class="md-nav__link">
+      八-自然语言处理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../9.chatbot/" title="九-聊天机器人怎么做" class="md-nav__link">
+      九-聊天机器人怎么做
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-nav__link">
+      十-词性标注与关键词提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        十一-0字节存储海量语料资源
+      </label>
+    
+    <a href="./" title="十一-0字节存储海量语料资源" class="md-nav__link md-nav__link--active">
+      十一-0字节存储海量语料资源
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="关键词提取" class="md-nav__link">
+    关键词提取
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="充分利用搜索引擎" class="md-nav__link">
+    充分利用搜索引擎
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="语料提取" class="md-nav__link">
+    语料提取
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../12.semantic-dependency/" title="十二-用语言云分析依存句法和语义依存" class="md-nav__link">
+      十二-用语言云分析依存句法和语义依存
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../13.linguistic-model/" title="十三-探究语言模型" class="md-nav__link">
+      十三-探究语言模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../14.participles-art/" title="十四-探究中文分词" class="md-nav__link">
+      十四-探究中文分词
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../15.probabilistic-model/" title="十五-概率图模型" class="md-nav__link">
+      十五-概率图模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../16.bag-material/" title="十六-自然语言处理中的囊中取物" class="md-nav__link">
+      十六-自然语言处理中的囊中取物
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../17.specific-mehtod/" title="十七-词性自动标注" class="md-nav__link">
+      十七-词性自动标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../18.tree/" title="十八-生成句法分析树" class="md-nav__link">
+      十八-生成句法分析树
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../19.understand/" title="十九-机器人是怎么理解“日后再说”的" class="md-nav__link">
+      十九-机器人是怎么理解“日后再说”的
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../20.pos-base-method/" title="二十-语义角色标注" class="md-nav__link">
+      二十-语义角色标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../21.tf-idf/" title="二十一-隐含语义索引模型" class="md-nav__link">
+      二十一-隐含语义索引模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../22.artificial-neural-network/" title="二十二-人工神经网络" class="md-nav__link">
+      二十二-人工神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../23.cnn/" title="二十三-用CNN做深度学习" class="md-nav__link">
+      二十三-用CNN做深度学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../24.nlp-deep-learning/" title="二十四-将深度学习应用到NLP" class="md-nav__link">
+      二十四-将深度学习应用到NLP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../25.word2vec/" title="二十五-word2vec的实现原理" class="md-nav__link">
+      二十五-word2vec的实现原理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../26.rnn/" title="二十六-递归神经网络(RNN)" class="md-nav__link">
+      二十六-递归神经网络(RNN)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../27.auto-faq/" title="二十七-自动问答" class="md-nav__link">
+      二十七-自动问答
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../28.subtitle-corpus/" title="二十八-基于美剧字幕的聊天语料库建设" class="md-nav__link">
+      二十八-基于美剧字幕的聊天语料库建设
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../29.corpus-1g/" title="二十九-近1GB的三千万聊天语料" class="md-nav__link">
+      二十九-近1GB的三千万聊天语料
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../30.tiny-rabbit/" title="三十-第一版聊天机器人小二兔" class="md-nav__link">
+      三十-第一版聊天机器人小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../31.directive/" title="三十一-把网站流量导向小二兔" class="md-nav__link">
+      三十一-把网站流量导向小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../32.word-vector/" title="三十二-用影视剧字幕语料库生成词向量" class="md-nav__link">
+      三十二-用影视剧字幕语料库生成词向量
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../33.lstm-rnn/" title="三十三-LSTM-RNN—有记忆的神经网络" class="md-nav__link">
+      三十三-LSTM-RNN—有记忆的神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../34.torch/" title="三十四-深度学习框架torch" class="md-nav__link">
+      三十四-深度学习框架torch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../35.lstm-learning/" title="三十五-一学会甄嬛体" class="md-nav__link">
+      三十五-一学会甄嬛体
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../36.tensorflow-session-graph/" title="三十六-tensorflow的session和graph" class="md-nav__link">
+      三十六-tensorflow的session和graph
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../37.tensorflow-lr/" title="三十七-tensorflow中的线性回归" class="md-nav__link">
+      三十七-tensorflow中的线性回归
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../38.make-chatbot/" title="三十八-聊天机器人构建流程" class="md-nav__link">
+      三十八-聊天机器人构建流程
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../39.gpu-server/" title="三十九-搭建一台GPU共享云服务" class="md-nav__link">
+      三十九-搭建一台GPU共享云服务
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../40.video-knowledge-point/" title="四十-视频之开篇宣言与知识点" class="md-nav__link">
+      四十-视频之开篇宣言与知识点
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../41.video-python/" title="四十一-视频之环境搭建与python基础" class="md-nav__link">
+      四十一-视频之环境搭建与python基础
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../42.practice/" title="四十二-从理论到实践开发聊天机器人1" class="md-nav__link">
+      四十二-从理论到实践开发聊天机器人1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../43.practice2/" title="四十三-从理论到实践开发聊天机器人2" class="md-nav__link">
+      四十三-从理论到实践开发聊天机器人2
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="关键词提取" class="md-nav__link">
+    关键词提取
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="充分利用搜索引擎" class="md-nav__link">
+    充分利用搜索引擎
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="语料提取" class="md-nav__link">
+    语料提取
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>十一-0字节存储海量语料资源</h1>
+                
+                <p>基于语料做机器学习需要海量数据支撑，如何能不存一点数据获取海量数据呢？我们可以以互联网为强大的数据后盾，搜索引擎为我们提供了高效的数据获取来源，结构化的搜索结果展示为我们实现了天然的特征基础，唯一需要我们做的就是在海量结果中选出我们需要的数据，本节我们来探索如何利用互联网拿到我们所需的语料资源 </p>
+<h3 id="_1">关键词提取<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>互联网资源无穷无尽，如何获取到我们所需的那部分语料库呢？这需要我们给出特定的关键词，而基于问句的关键词提取上一节已经做了介绍，利用pynlpir库可以非常方便地实现关键词提取，比如：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span> <span class="s2">&quot;utf-8&quot;</span> <span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pynlpir</span>
+
+<span class="n">pynlpir</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;怎么才能把电脑里的垃圾文件删除&#39;</span>
+
+<span class="n">key_words</span> <span class="o">=</span> <span class="n">pynlpir</span><span class="o">.</span><span class="n">get_key_words</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key_word</span> <span class="ow">in</span> <span class="n">key_words</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">key_word</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">key_word</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">pynlpir</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<p>提取出的关键词如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>电脑     2.0
+垃圾     2.0
+文件     2.0
+删除     1.0
+</pre></div>
+</td></tr></table>
+
+<p>我们基于这四个关键词来获取互联网的资源就可以得到我们所需要的语料信息</p>
+<h3 id="_2">充分利用搜索引擎<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>有了关键词，想获取预料信息，还需要知道几大搜索引擎的调用接口，首先我们来探索一下百度，百度的接口是这样的：</p>
+<p>https://www.baidu.com/s?wd=机器学习 数据挖掘 信息检索</p>
+<p>把wd参数换成我们的关键词就可以拿到相应的结果，我们用程序来尝试一下：</p>
+<p>首先创建scrapy工程，执行：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>scrapy startproject baidu_search
+</pre></div>
+</td></tr></table>
+
+<p>自动生成了baidu_search目录和下面的文件（不知道怎么使用scrapy，请见我的文章教你成为全栈工程师(Full Stack Developer) 三十-十分钟掌握最强大的python爬虫）</p>
+<p>创建baidu_search/baidu_search/spiders/baidu_search.py文件，内容如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span> <span class="s2">&quot;utf-8&quot;</span> <span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">scrapy</span>
+
+<span class="k">class</span> <span class="nc">BaiduSearchSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;baidu_search&quot;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;baidu.com&quot;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;https://www.baidu.com/s?wd=机器学习&quot;</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span>
+</pre></div>
+</td></tr></table>
+
+<p>这样我们的抓取器就做好了，进入baidu_search/baidu_search/目录，执行：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>scrapy crawl baidu_search
+</pre></div>
+</td></tr></table>
+
+<p>我们发现返回的数据是空，下面我们修改配置来解决这个问题，修改settings.py文件，把ROBOTSTXT_OBEY改为</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">ROBOTSTXT_OBEY</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</td></tr></table>
+
+<p>并把USER_AGENT设置为：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>USER_AGENT = &#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&#39;
+</pre></div>
+</td></tr></table>
+
+<p>为了避免抓取hang住，我们添加如下超时设置：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">DOWNLOAD_TIMEOUT</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</td></tr></table>
+
+<p>再次执行</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>scrapy crawl baidu_search
+</pre></div>
+</td></tr></table>
+
+<p>这次终于可以看到大片大片的html了，我们临时把他写到文件中，修改parse()函数如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;result.html&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>重新执行后生成了<code>result.html</code>，我们用浏览器打开本地文件如下：</p>
+<p>说明我们抓取到了正确的结果</p>
+<h3 id="_3">语料提取<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>上面得到的仅是搜索结果，它只是一种索引，真正的内容需要进入到每一个链接才能拿到，下面我们尝试提取出每一个链接并继续抓取里面的内容，那么如何提取链接呢，我们来分析一下<code>result.html</code>这个抓取百度搜索结果文件</p>
+<p>我们可以看到，每一条链接都是嵌在class=c-container这个div里面的一个h3下的a标签的href属性</p>
+<p>所以我们的提取规则就是：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">hrefs</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">selector</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[contains(@class, &quot;c-container&quot;)]/h3/a/@href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<p>修改parse()函数并添加如下代码：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">hrefs</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">selector</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[contains(@class, &quot;c-container&quot;)]/h3/a/@href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">href</span> <span class="ow">in</span> <span class="n">hrefs</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">href</span>
+</pre></div>
+</td></tr></table>
+
+<p>执行打印出：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>……
+2016-06-30 09:22:51 [scrapy] DEBUG: Crawled (200) &lt;GET https://www.baidu.com/s?wd=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&gt; (referer: None)
+http://www.baidu.com/link?url=ducktBaLUAdceZyTkXSyx3nDbgLHoYlDVgAGlxPwcNNrOMQrbatubNKGRElo0VWua26AC7JRD2pLxFcaUBjcOq
+http://www.baidu.com/link?url=PGU6qW3zUb9g5uMT3W1O4VxPmoH-Fg-jolx8rBmBAeyOuXUl0wHzzNPkX3IDS5ZFSSSHyaBTjHd5f2r8CXBFjSctF9SGKaVock5xaJNuBCy
+http://www.baidu.com/link?url=JMirHAkIRJWI_9Va7HNc8zXWXU7JeTYhPGe66cOV4Zi5LH-GB7IQvVng4Gn35IiVhsUYP3IFyn6MKRl4_-byca
+http://www.baidu.com/link?url=Et9xy9Qej4XRmLB9UdFUlWD_AugxoDxQt-BZHCFyZEDPYzEx52vL_jsr_AvkNLHC-TfLThm0dKs21IGR1QA6h_
+http://www.baidu.com/link?url=Ajb1DXzWj9A6KAYicHl4wS4RV6iDuy44kP_j-G0rbOHYQy5IR5JOigxbJERsqyH3
+http://www.baidu.com/link?url=uRDMnVDsmS7sD4frNv8EHd2jKSvOB5PtqxeT8Q7MFzRyHPIVTYyiWEGNReHAbRymMnWOxqF_CSQOXL87v3o4qa
+http://www.baidu.com/link?url=18j6NZUp8fknmM1nUYIfsmep5H0JD39k8bL7CkACFtKdD4whoTuZy0ZMsCxZzZOj
+http://www.baidu.com/link?url=TapnMj78otilz-AR1NddZCSfG2vqcPYGNCYRu9_z70rmAKWqIVAvjV06iJvcvuECGDbwAefdsAmGRHba6TDpFMV1Pk-_JRs_bt9iE4T3bVi
+http://www.baidu.com/link?url=b1j-GMumC7s5eDXTHIMPpsdL7HtxrP4Rb_kw0GNo3z2ZSlkhLVd_4aFEzflPGArPHv7VBtZ1xbyHo3JtG0PEZq
+http://www.baidu.com/link?url=dG3GISijkExWf6Sy6Zn1xk_k--eGPUl1BrTCLRBxUOaS4jlrpX-PzV618-5hrCeos2_Rzaqrh0SecqYPloZfbyaj6wHSfbJHG9kFTvY6Spi
+2016-06-30 09:22:51 [scrapy] INFO: Closing spider (finished)
+……
+</pre></div>
+</td></tr></table>
+
+<p>下面我们把这些url添加到抓取队列中继续抓取，修改baidu_search.py文件，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="n">hrefs</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">selector</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[contains(@class, &quot;c-container&quot;)]/h3/a/@href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">href</span> <span class="ow">in</span> <span class="n">hrefs</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">href</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_url</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">parse_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>抓取效果如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>……
+2016-06-30 09:26:52 [scrapy] DEBUG: Crawled (200) &lt;GET https://www.baidu.com/s?wd=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&gt; (referer: None)
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://book.douban.com/subject/1102235/&gt; from &lt;GET http://www.baidu.com/link?url=S1kmtqU1ZBDaSKlVXdeKfNtyv7fErWDMC_TuOEXdedXEe2DzoMqRbMdbejbC4vts4MHm5NQUIRbk0Y0QdohY5_&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://www.kuqin.com/shuoit/20140512/339858.html&gt; from &lt;GET http://www.baidu.com/link?url=_6fKf9IjO_EJ4hw91Y6RnfXnqS5u8VmwvDsJh3tduapsgXKQb-nMjsxMRPLW1bt5JlnzJPgOobHQwyHTgkWolK&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://wenku.baidu.com/link?url=7pAXoiFZz4alDMOjp-41OJaONe3B86GMEiFu96bqQy8qakk37vouey5Q-SxL7oN-r9mnNukKgVjN8iOloEKQoeEmgKLzukIFkX_rpr3dhy3&gt; from &lt;GET http://www.baidu.com/link?url=7pAXoiFZz4alDMOjp-41OJaONe3B86GMEiFu96bqQy8qakk37vouey5Q-SxL7oN-r9mnNukKgVjN8iOloEKQoeEmgKLzukIFkX_rpr3dhy3&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://blog.csdn.net/zouxy09/article/details/16955347&gt; from &lt;GET http://www.baidu.com/link?url=5dh-19wDKE_agNpwz_9YTm01wHLJ9IxBfrZPVWo6RfFECGmIW7bt0vk6POhWDN04O4QHem_v8-iYLTzoeXmQZK&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://open.163.com/special/opencourse/machinelearning.html&gt; from &lt;GET http://www.baidu.com/link?url=ti__XlRN8Oij0rFvqxfTtJz-dLhng6NANkAVwwISlHQ4nKOhRXNSJQhzekflnnFuuW5033lDRcqywOlqrzoANUhB0yQf3Nq-pXMWmBQO7x7&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://www.guokr.com/group/262/&gt; from &lt;GET http://www.baidu.com/link?url=cuifybqWoLRMULYGe70JCzyrZMEKL9GgfAa6V7p_7ONb7Q6KzXPad5zMfIYsKqN6&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://mooc.guokr.com/course/16/Machine-Learning/&gt; from &lt;GET http://www.baidu.com/link?url=93Yp_GA3ZLnSwjN5YREAML4sP5BthETto8Psn7ty5VJHoMB95gWhKTT6iDBFHeAfHjDhqwCf-NBrgeoP7YD1zq&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://tieba.baidu.com/f?kw=%BB%FA%C6%F7%D1%A7%CF%B0&amp;fr=ala0&amp;tpl=5&gt; from &lt;GET http://www.baidu.com/link?url=EjCvUWhJWV1_FEgNyetjTAu6HqImgl-A2229Lp8Kl3BfpcqlrSLOUabc-bzgn6KD1Wbg_s547FunrFp79phQTqXuIx6tkn9NGBhSqxhYUhm&gt;
+2016-06-30 09:26:52 [scrapy] DEBUG: Redirecting (302) to &lt;GET http://www.geekpark.net/topics/213883/&gt; from &lt;GET http://www.baidu.com/link?url=kvdmirs22OQAj10KSbGstZJtf8L74bTgd4p1AxYk6c2B9lP_8_nSrLNDlfb9DHW7&gt;
+……
+</pre></div>
+</td></tr></table>
+
+<p>看起来能够正常抓取啦，下面我们把抓取下来的网页提取出正文并尽量去掉标签，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">parse_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">remove_tags</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">selector</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//body&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<p>下面，我们希望把百度搜索结果中的摘要也能够保存下来作为我们语料的一部分，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="n">hrefs</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">selector</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[contains(@class, &quot;c-container&quot;)]/h3/a/@href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+    <span class="n">containers</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">selector</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//div[contains(@class, &quot;c-container&quot;)]&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">containers</span><span class="p">:</span>
+        <span class="n">href</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;h3/a/@href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">remove_tags</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;h3/a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">c_abstract</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;div/div/div[contains(@class, &quot;c-abstract&quot;)]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c_abstract</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">abstract</span> <span class="o">=</span> <span class="n">remove_tags</span><span class="p">(</span><span class="n">c_abstract</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">href</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_url</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;abstract&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">abstract</span>
+        <span class="k">yield</span> <span class="n">request</span>
+
+<span class="k">def</span> <span class="nf">parse_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;url:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span>
+    <span class="k">print</span> <span class="s2">&quot;title:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+    <span class="k">print</span> <span class="s2">&quot;abstract:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;abstract&#39;</span><span class="p">]</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">remove_tags</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">selector</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//body&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">print</span> <span class="s2">&quot;content_len:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>解释一下，首先我们在提取url的时候顺便把标题和摘要都提取出来，然后通过scrapy.Request的meta传递到处理函数parse_url中，这样在抓取完成之后也能接到这两个值，然后提取出content，这样我们想要的数据就完整了：url、title、abstract、content</p>
+<p>百度搜索数据几乎是整个互联网的镜像，所以你想要得到的答案，我们的语料库就是整个互联网，而我们完全借助于百度搜索引擎，不必提前存储任何资料，互联网真是伟大！</p>
+<p>之后这些数据想保存在什么地方就看后面我们要怎么处理了，欲知后事如何，且听下回分解</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                十-词性标注与关键词提取
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../12.semantic-dependency/" title="十二-用语言云分析依存句法和语义依存" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                十二-用语言云分析依存句法和语义依存
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.6cdc17f0.js"></script>
+      
+      <script>app.initialize({version:"0.17.2",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

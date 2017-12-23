@@ -1,0 +1,896 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.2.1">
+    
+    
+      
+        <title>八-自然语言处理 - 自己动手做聊天机器人</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.41c6761c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="自己动手做聊天机器人" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                自己动手做聊天机器人
+              </span>
+              <span class="md-header-nav__topic">
+                八-自然语言处理
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    自己动手做聊天机器人
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../1.knowledge/" title="一-涉及知识" class="md-nav__link">
+      一-涉及知识
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../2.nltk/" title="二-初识NLTK库" class="md-nav__link">
+      二-初识NLTK库
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../3.corpus/" title="三-语料与词汇资源" class="md-nav__link">
+      三-语料与词汇资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../4.pos-tagging/" title="四-自动化词性标注" class="md-nav__link">
+      四-自动化词性标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../5.text-classification/" title="五-文本分类" class="md-nav__link">
+      五-文本分类
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../6.extract/" title="六-结构化提取" class="md-nav__link">
+      六-结构化提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../7.grammar/" title="七-文法分析" class="md-nav__link">
+      七-文法分析
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        八-自然语言处理
+      </label>
+    
+    <a href="./" title="八-自然语言处理" class="md-nav__link md-nav__link--active">
+      八-自然语言处理
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="自然语言处理怎么学？" class="md-nav__link">
+    自然语言处理怎么学？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="自然语言处理学什么？" class="md-nav__link">
+    自然语言处理学什么？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="自然语言处理和聊天机器人什么关系？" class="md-nav__link">
+    自然语言处理和聊天机器人什么关系？
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../9.chatbot/" title="九-聊天机器人怎么做" class="md-nav__link">
+      九-聊天机器人怎么做
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-nav__link">
+      十-词性标注与关键词提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../11.storage/" title="十一-0字节存储海量语料资源" class="md-nav__link">
+      十一-0字节存储海量语料资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../12.semantic-dependency/" title="十二-用语言云分析依存句法和语义依存" class="md-nav__link">
+      十二-用语言云分析依存句法和语义依存
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../13.linguistic-model/" title="十三-探究语言模型" class="md-nav__link">
+      十三-探究语言模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../14.participles-art/" title="十四-探究中文分词" class="md-nav__link">
+      十四-探究中文分词
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../15.probabilistic-model/" title="十五-概率图模型" class="md-nav__link">
+      十五-概率图模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../16.bag-material/" title="十六-自然语言处理中的囊中取物" class="md-nav__link">
+      十六-自然语言处理中的囊中取物
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../17.specific-mehtod/" title="十七-词性自动标注" class="md-nav__link">
+      十七-词性自动标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../18.tree/" title="十八-生成句法分析树" class="md-nav__link">
+      十八-生成句法分析树
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../19.understand/" title="十九-机器人是怎么理解“日后再说”的" class="md-nav__link">
+      十九-机器人是怎么理解“日后再说”的
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../20.pos-base-method/" title="二十-语义角色标注" class="md-nav__link">
+      二十-语义角色标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../21.tf-idf/" title="二十一-隐含语义索引模型" class="md-nav__link">
+      二十一-隐含语义索引模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../22.artificial-neural-network/" title="二十二-人工神经网络" class="md-nav__link">
+      二十二-人工神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../23.cnn/" title="二十三-用CNN做深度学习" class="md-nav__link">
+      二十三-用CNN做深度学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../24.nlp-deep-learning/" title="二十四-将深度学习应用到NLP" class="md-nav__link">
+      二十四-将深度学习应用到NLP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../25.word2vec/" title="二十五-word2vec的实现原理" class="md-nav__link">
+      二十五-word2vec的实现原理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../26.rnn/" title="二十六-递归神经网络(RNN)" class="md-nav__link">
+      二十六-递归神经网络(RNN)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../27.auto-faq/" title="二十七-自动问答" class="md-nav__link">
+      二十七-自动问答
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../28.subtitle-corpus/" title="二十八-基于美剧字幕的聊天语料库建设" class="md-nav__link">
+      二十八-基于美剧字幕的聊天语料库建设
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../29.corpus-1g/" title="二十九-近1GB的三千万聊天语料" class="md-nav__link">
+      二十九-近1GB的三千万聊天语料
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../30.tiny-rabbit/" title="三十-第一版聊天机器人小二兔" class="md-nav__link">
+      三十-第一版聊天机器人小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../31.directive/" title="三十一-把网站流量导向小二兔" class="md-nav__link">
+      三十一-把网站流量导向小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../32.word-vector/" title="三十二-用影视剧字幕语料库生成词向量" class="md-nav__link">
+      三十二-用影视剧字幕语料库生成词向量
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../33.lstm-rnn/" title="三十三-LSTM-RNN—有记忆的神经网络" class="md-nav__link">
+      三十三-LSTM-RNN—有记忆的神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../34.torch/" title="三十四-深度学习框架torch" class="md-nav__link">
+      三十四-深度学习框架torch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../35.lstm-learning/" title="三十五-一学会甄嬛体" class="md-nav__link">
+      三十五-一学会甄嬛体
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../36.tensorflow-session-graph/" title="三十六-tensorflow的session和graph" class="md-nav__link">
+      三十六-tensorflow的session和graph
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../37.tensorflow-lr/" title="三十七-tensorflow中的线性回归" class="md-nav__link">
+      三十七-tensorflow中的线性回归
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../38.make-chatbot/" title="三十八-聊天机器人构建流程" class="md-nav__link">
+      三十八-聊天机器人构建流程
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../39.gpu-server/" title="三十九-搭建一台GPU共享云服务" class="md-nav__link">
+      三十九-搭建一台GPU共享云服务
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../40.video-knowledge-point/" title="四十-视频之开篇宣言与知识点" class="md-nav__link">
+      四十-视频之开篇宣言与知识点
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../41.video-python/" title="四十一-视频之环境搭建与python基础" class="md-nav__link">
+      四十一-视频之环境搭建与python基础
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../42.practice/" title="四十二-从理论到实践开发聊天机器人1" class="md-nav__link">
+      四十二-从理论到实践开发聊天机器人1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../43.practice2/" title="四十三-从理论到实践开发聊天机器人2" class="md-nav__link">
+      四十三-从理论到实践开发聊天机器人2
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="自然语言处理怎么学？" class="md-nav__link">
+    自然语言处理怎么学？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="自然语言处理学什么？" class="md-nav__link">
+    自然语言处理学什么？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="自然语言处理和聊天机器人什么关系？" class="md-nav__link">
+    自然语言处理和聊天机器人什么关系？
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>八-自然语言处理</h1>
+                
+                <p>别误会，前面几节不是逗你玩，我总结了，计算机领域的知识得倒着学，不管三七二十一先用起来，然后再系统地学习，这不，前几节先给你们展示了几个常见知识和工具，从这一节开始步入主题，自然语言处理与问答系统 </p>
+<h3 id="_1">自然语言处理怎么学？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>先学会倒着学，倒回去看上面那句话：不管三七二十一先用起来，然后再系统地学习</p>
+<p>nltk是最经典的自然语言处理的python库，不知道怎么用的看前几篇文章吧，先把它用起来，最起码做出来一个词性标注的小工具</p>
+<h3 id="_2">自然语言处理学什么？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>这门学科的知识可是相当的广泛，广泛到你不需要掌握任何知识就可以直接学，因为你不可能掌握它依赖的全部知识，所以就直接冲过去吧。。。</p>
+<p>话说回来，它到底包括哪些知识呢？如果把这些知识比作难关的话，我数一数，整整九九八十一难</p>
+<p><code>第一难：语言学。</code>直接懵逼了吧？语言学啥玩意，怎么说话？还是怎么学说话？其实大家也都说不清语言学是什么东东，但是我知道大家在这方面都在研究啥，有的在研究语言描述的学问，有的在研究语言理论的学问，有的在研究不同语言对比的学问，有的在研究语言共同点上的学问，有的在研究语言发展的历史，有的在研究语言的结构，总之用一个字来形容那是一个涉猎广泛啊</p>
+<p><code>第二难：语音学。</code>再一次懵逼！有人说：我知道！语音学就是怎么发声。赞一个，回答的那是相当不完全对啊！你以为你是学唱歌吗？语音学研究领域分三块：一块是研究声音是怎么发出来的（同学你说对了一点）；一块是研究声音是怎么传递的；一块是研究声音是怎么接收的。这尼玛不是物理吗？怎么还整出语言学来了？其实这是一个交叉学科，交叉了语言学，交叉了生物学</p>
+<p><code>第三难：概率论。</code>啥？怎么到处都是概率论啊？听人说今年又某某某得了诺贝尔经济学奖了，我定睛一看，尼玛，这不是研究的概率论嘛，这也能得经济学奖，真是得数学者得天下啊。废话少说，概率论跟自然语言处理有什么关系？我知道了，说话是一个概率问题，我经常说“尼玛”，那我再次说“尼玛”的概率就高，嗯~沾边了。提到概率论那就少不了这些：贝叶斯老爷爷、马尔可夫大叔……</p>
+<p><code>第四难：信息论。</code>提到信息论肯定第一个想到的是“香浓”啊，有点流口水了，香农老爷爷提出的熵理论影响那是相当巨大啊，没有它估计就没有我们计算机人事什么事了，因为没有他就没有互联网了。还有人说没有图灵就没有计算机了，他咋不说没有他们俩就没有地球了呢？</p>
+<p><code>第五难：机器学习。</code>机器学习是我的最爱，得聊的正式一点，咳咳！机器学习啊——得好好学</p>
+<p><code>第六难：形式语言与自动机。</code>我滴妈啊！我跪了！刚说图灵图灵就来了。说白了，形式语言就是把语言搞的很形式，换句话说就是本来你能懂的东西，搞成你不能懂的东西，那就是形式语言啦！不信？你听：短语结构语言、上下文有关语言、上下文无关语言、正则语言，懂了吗？而自动机呢包括：图灵机、有穷自动机、下推自动机、线性有界自动机。你可能会问了，这么多自动机那得要多少汽油啊？该死的翻译怎么就把这么高大上的英文给翻译成这么晦涩呢，自动机英文叫automata，表达的是自动形成一些信息，也就是说根据前面能自动判断出后面。形式语言用在自然语言处理上我理解，都有语言俩字，可是这自动机有什么用呢？这您还真问着了，您见过拼写检查吗？这就是用的自动机，用处杠杠的！</p>
+<p><code>第七难：语言知识库。</code>你见过科幻电影里的机器人手捧着电话线就能知道一切的镜头吧，互联网上有无数文本内容，用我们抽象的话说那都是知识，但是简单放在电脑里那就是一串字符串，怎么才能让它以知识的形式存储呢？首先得让计算机能分析语言，那么语料就是它学习的基础、是种子，然后有了基础再让它把语言里的知识存储起来，这就形成了语言知识库</p>
+<p><code>第八难：语言模型。</code>模型顾名思义就是“模子”，就是“往上靠”的意思，怎么靠上去更吻合就怎么靠，这就是语言模型。怎么？没懂？好那我用形式化的语言再来说一下：把很多已经整理好的模子放在那里，遇到一个新内容的时候看看属于哪种格式，那就按照这种模子来解释。嗯~你肯定懂了</p>
+<p><code>第九难：分词、实体识别、词性标注。</code>这部分开始纯语言处理了，前几节也简单讲过这部分内容，分词就是让计算机自动区分出汉字组成的词语，因为一个词语一个意思嘛。实体识别就是再分词之后能够根据各种短语形式判断出哪个词表示的是一个物体或组织或人名或……。词性标注就是给你一句话，你能识别出“名动形、数量代、副介连助叹拟声”。</p>
+<p><code>第十难：句法分析。</code>句法分析类似于小学时学的主谓宾补定状的区分，只是要在这基础上组合成短语，也就是把一个非结构化的句子分析称结构化的数据结构</p>
+<p><code>第十一难：语义分析。</code>看起来一步一步越来越深入了。语义是基于句法分析，进一步理解句子的意思，最重要的就是消除歧义，人姑且还会理解出歧义来呢，何况一个机器</p>
+<p><code>第十二难：篇章分析。</code>一堆堆的句子，每个都分析明白了，但是一堆句子组合成的篇章又怎么才能联系起来呢？你得总结出本文的中心思想不是？这他娘的是小学语文里最难的一道题</p>
+<p>以上这些内容就是自然语言处理的几大难了，什么？说好的九九八十一难呢？你还不嫌多啊？你还真想变成孙猴子吗？能把这几关过了就不错了！</p>
+<h3 id="_3">自然语言处理和聊天机器人什么关系？<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>说到这里，索性就说说下自然语言处理的应用领域吧。</p>
+<p><code>第一个应用：机器翻译。</code>机器翻译方法有很多，我不做，也不说，想学自己看去</p>
+<p><code>第二个应用：语音翻译。</code>跟上一个不是一个吗？不是的，这是语音，那个是机器</p>
+<p><code>第三个应用：文本分类与情感分析。</code>别看两个词，其实是一种事——分类。前面有很多篇文章将文本分类的，可以看看，还有代码噢。</p>
+<p><code>第四个应用：信息检索与问答系统。</code>终于说到重点了，累死我了。这里的问答系统就是我们的聊天机器人。后面会着重讲这个应用，我不断读论文，不断给大家分享哈，别着急，乖！</p>
+<p><code>第五个应用：自动文摘和信息抽取。</code>看过百度搜索里显示的摘要吗？他们多么的精简，而且描述了网页里的中心内容，多漂亮啊！可惜多数都没做到自动文摘。所以这是一个高技术难度的问题。</p>
+<p><code>第六个应用：人机对话。</code>融合了语音识别、口语情感分析、再加上问答系统的全部内容，是自然语言处理的最高境界，离机器人统霸世界不远了。</p>
+<p>以及这么多数不完的应用：文本挖掘、舆情分析、隐喻计算、文字编辑和自动校对、作文自动评分、OCR、说话人识别验证……</p>
+<p>好！自然语言处理就温习到这里，让我们上阵出发！</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../7.grammar/" title="七-文法分析" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                七-文法分析
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../9.chatbot/" title="九-聊天机器人怎么做" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                九-聊天机器人怎么做
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.6cdc17f0.js"></script>
+      
+      <script>app.initialize({version:"0.17.2",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

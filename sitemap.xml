@@ -4,351 +4,351 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/knowledge/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/1.knowledge/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/nltk/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/2.nltk/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/corpus/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/3.corpus/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/pos-tagging/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/4.pos-tagging/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/text-classification/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/5.text-classification/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/extract/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/6.extract/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/grammar/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/7.grammar/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/nlp-review/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/8.nlp-review/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/chatbot/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/9.chatbot/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/pos-ke/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/10.pos-ke/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/storage/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/11.storage/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/semantic-dependency/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/12.semantic-dependency/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/linguistic-model/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/13.linguistic-model/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/participles-art/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/14.participles-art/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/probabilistic-model/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/15.probabilistic-model/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/bag-material/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/16.bag-material/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/specific-mehtod/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/17.specific-mehtod/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/tree/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/18.tree/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/understand/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/19.understand/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/pos-base-method/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/20.pos-base-method/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/tf-idf/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/21.tf-idf/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/artificial-neural-network/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/22.artificial-neural-network/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/cnn/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/23.cnn/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/nlp-deep-learning/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/24.nlp-deep-learning/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/word2vec/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/25.word2vec/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/rnn/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/26.rnn/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/auto-faq/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/27.auto-faq/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/subtitle-corpus/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/28.subtitle-corpus/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/corpus-1g/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/29.corpus-1g/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/tiny-rabbit/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/30.tiny-rabbit/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/directive/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/31.directive/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/word-vector/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/32.word-vector/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/lstm-rnn/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/33.lstm-rnn/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/torch/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/34.torch/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/lstm-learning/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/35.lstm-learning/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/tensorflow-session-graph/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/36.tensorflow-session-graph/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/tensorflow-lr/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/37.tensorflow-lr/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/make-chatbot/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/38.make-chatbot/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/gpu-server/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/39.gpu-server/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/video-knowledge-point/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/40.video-knowledge-point/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/video-python/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/41.video-python/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/practice/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/42.practice/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>/practice2/</loc>
-     <lastmod>2017-12-04</lastmod>
+     <loc>/43.practice2/</loc>
+     <lastmod>2017-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

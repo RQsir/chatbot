@@ -1,0 +1,1136 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.2.1">
+    
+    
+      
+        <title>十二-用语言云分析依存句法和语义依存 - 自己动手做聊天机器人</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.41c6761c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="自己动手做聊天机器人" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                自己动手做聊天机器人
+              </span>
+              <span class="md-header-nav__topic">
+                十二-用语言云分析依存句法和语义依存
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    自己动手做聊天机器人
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../1.knowledge/" title="一-涉及知识" class="md-nav__link">
+      一-涉及知识
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../2.nltk/" title="二-初识NLTK库" class="md-nav__link">
+      二-初识NLTK库
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../3.corpus/" title="三-语料与词汇资源" class="md-nav__link">
+      三-语料与词汇资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../4.pos-tagging/" title="四-自动化词性标注" class="md-nav__link">
+      四-自动化词性标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../5.text-classification/" title="五-文本分类" class="md-nav__link">
+      五-文本分类
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../6.extract/" title="六-结构化提取" class="md-nav__link">
+      六-结构化提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../7.grammar/" title="七-文法分析" class="md-nav__link">
+      七-文法分析
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../8.nlp-review/" title="八-自然语言处理" class="md-nav__link">
+      八-自然语言处理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../9.chatbot/" title="九-聊天机器人怎么做" class="md-nav__link">
+      九-聊天机器人怎么做
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-nav__link">
+      十-词性标注与关键词提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../11.storage/" title="十一-0字节存储海量语料资源" class="md-nav__link">
+      十一-0字节存储海量语料资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        十二-用语言云分析依存句法和语义依存
+      </label>
+    
+    <a href="./" title="十二-用语言云分析依存句法和语义依存" class="md-nav__link md-nav__link--active">
+      十二-用语言云分析依存句法和语义依存
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="什么是依存句法分析呢？" class="md-nav__link">
+    什么是依存句法分析呢？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="什么是语义依存分析呢？" class="md-nav__link">
+    什么是语义依存分析呢？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="语义依存和依存句法的区别" class="md-nav__link">
+    语义依存和依存句法的区别
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="依存句法分析到底是怎么分析的呢？" class="md-nav__link">
+    依存句法分析到底是怎么分析的呢？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="依存关系的五条公理" class="md-nav__link">
+    依存关系的五条公理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ltp" title="LTP依存关系标记" class="md-nav__link">
+    LTP依存关系标记
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="那么依存关系是怎么计算出来的呢？" class="md-nav__link">
+    那么依存关系是怎么计算出来的呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ltp_1" title="LTP云平台怎么用？" class="md-nav__link">
+    LTP云平台怎么用？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../13.linguistic-model/" title="十三-探究语言模型" class="md-nav__link">
+      十三-探究语言模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../14.participles-art/" title="十四-探究中文分词" class="md-nav__link">
+      十四-探究中文分词
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../15.probabilistic-model/" title="十五-概率图模型" class="md-nav__link">
+      十五-概率图模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../16.bag-material/" title="十六-自然语言处理中的囊中取物" class="md-nav__link">
+      十六-自然语言处理中的囊中取物
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../17.specific-mehtod/" title="十七-词性自动标注" class="md-nav__link">
+      十七-词性自动标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../18.tree/" title="十八-生成句法分析树" class="md-nav__link">
+      十八-生成句法分析树
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../19.understand/" title="十九-机器人是怎么理解“日后再说”的" class="md-nav__link">
+      十九-机器人是怎么理解“日后再说”的
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../20.pos-base-method/" title="二十-语义角色标注" class="md-nav__link">
+      二十-语义角色标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../21.tf-idf/" title="二十一-隐含语义索引模型" class="md-nav__link">
+      二十一-隐含语义索引模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../22.artificial-neural-network/" title="二十二-人工神经网络" class="md-nav__link">
+      二十二-人工神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../23.cnn/" title="二十三-用CNN做深度学习" class="md-nav__link">
+      二十三-用CNN做深度学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../24.nlp-deep-learning/" title="二十四-将深度学习应用到NLP" class="md-nav__link">
+      二十四-将深度学习应用到NLP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../25.word2vec/" title="二十五-word2vec的实现原理" class="md-nav__link">
+      二十五-word2vec的实现原理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../26.rnn/" title="二十六-递归神经网络(RNN)" class="md-nav__link">
+      二十六-递归神经网络(RNN)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../27.auto-faq/" title="二十七-自动问答" class="md-nav__link">
+      二十七-自动问答
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../28.subtitle-corpus/" title="二十八-基于美剧字幕的聊天语料库建设" class="md-nav__link">
+      二十八-基于美剧字幕的聊天语料库建设
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../29.corpus-1g/" title="二十九-近1GB的三千万聊天语料" class="md-nav__link">
+      二十九-近1GB的三千万聊天语料
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../30.tiny-rabbit/" title="三十-第一版聊天机器人小二兔" class="md-nav__link">
+      三十-第一版聊天机器人小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../31.directive/" title="三十一-把网站流量导向小二兔" class="md-nav__link">
+      三十一-把网站流量导向小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../32.word-vector/" title="三十二-用影视剧字幕语料库生成词向量" class="md-nav__link">
+      三十二-用影视剧字幕语料库生成词向量
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../33.lstm-rnn/" title="三十三-LSTM-RNN—有记忆的神经网络" class="md-nav__link">
+      三十三-LSTM-RNN—有记忆的神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../34.torch/" title="三十四-深度学习框架torch" class="md-nav__link">
+      三十四-深度学习框架torch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../35.lstm-learning/" title="三十五-一学会甄嬛体" class="md-nav__link">
+      三十五-一学会甄嬛体
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../36.tensorflow-session-graph/" title="三十六-tensorflow的session和graph" class="md-nav__link">
+      三十六-tensorflow的session和graph
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../37.tensorflow-lr/" title="三十七-tensorflow中的线性回归" class="md-nav__link">
+      三十七-tensorflow中的线性回归
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../38.make-chatbot/" title="三十八-聊天机器人构建流程" class="md-nav__link">
+      三十八-聊天机器人构建流程
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../39.gpu-server/" title="三十九-搭建一台GPU共享云服务" class="md-nav__link">
+      三十九-搭建一台GPU共享云服务
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../40.video-knowledge-point/" title="四十-视频之开篇宣言与知识点" class="md-nav__link">
+      四十-视频之开篇宣言与知识点
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../41.video-python/" title="四十一-视频之环境搭建与python基础" class="md-nav__link">
+      四十一-视频之环境搭建与python基础
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../42.practice/" title="四十二-从理论到实践开发聊天机器人1" class="md-nav__link">
+      四十二-从理论到实践开发聊天机器人1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../43.practice2/" title="四十三-从理论到实践开发聊天机器人2" class="md-nav__link">
+      四十三-从理论到实践开发聊天机器人2
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="什么是依存句法分析呢？" class="md-nav__link">
+    什么是依存句法分析呢？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="什么是语义依存分析呢？" class="md-nav__link">
+    什么是语义依存分析呢？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="语义依存和依存句法的区别" class="md-nav__link">
+    语义依存和依存句法的区别
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="依存句法分析到底是怎么分析的呢？" class="md-nav__link">
+    依存句法分析到底是怎么分析的呢？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="依存关系的五条公理" class="md-nav__link">
+    依存关系的五条公理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ltp" title="LTP依存关系标记" class="md-nav__link">
+    LTP依存关系标记
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="那么依存关系是怎么计算出来的呢？" class="md-nav__link">
+    那么依存关系是怎么计算出来的呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ltp_1" title="LTP云平台怎么用？" class="md-nav__link">
+    LTP云平台怎么用？
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>十二-用语言云分析依存句法和语义依存</h1>
+                
+                <p>句法分析是自然语言处理中非常重要的环节，没有句法分析是无法让计算机理解语言的含义的，依存句法分析由法国语言学家在1959年提出，影响深远，并且深受计算机行业青睐，依存句法分析也是做聊天机器人需要解决的最关键问题之一，语义依存更是对句子更深层次的分析，当然，有可用的工具我们就不重复造轮子，本节介绍如何利用国内领先的中文语言技术平台实现句法分析 </p>
+<h3 id="_1">什么是依存句法分析呢？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>叫的晦涩的术语，往往其实灰常简单，句法就是句子的法律规则，也就是句子里成分都是按照什么法律规则组织在一起的。而依存句法就是这些成分之间有一种依赖关系。什么是依赖：没有你的话，我存在就是个错误。“北京是中国的首都”，如果没有“首都”，那么“中国的”存在就是个错误，因为“北京是中国的”表达的完全是另外一个意思了。</p>
+<h3 id="_2">什么是语义依存分析呢？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>“语义”就是说句子的含义，“张三昨天告诉李四一个秘密”，那么语义包括：谁告诉李四秘密的？张三。张三告诉谁一个秘密？李四。张三什么时候告诉的？昨天。张三告诉李四什么？秘密。</p>
+<h3 id="_3">语义依存和依存句法的区别<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>依存句法强调介词、助词等的划分作用，语义依存注重实词之间的逻辑关系</p>
+<p>另外，依存句法随着字面词语变化而不同，语义依存不同字面词语可以表达同一个意思，句法结构不同的句子语义关系可能相同。</p>
+<p>依存句法分析和语义依存分析对我们的聊天机器人有什么意义呢？
+依存句法分析和语义分析相结合使用，对对方说的话进行依存和语义分析后，一方面可以让计算机理解句子的含义，从而匹配到最合适的回答，另外如果有已经存在的依存、语义分析结果，还可以通过置信度匹配来实现聊天回答。</p>
+<h3 id="_4">依存句法分析到底是怎么分析的呢？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>依存句法分析的基本任务是确定句式的句法结构(短语结构)或句子中词汇之间的依存关系。依存句法分析最重要的两棵树：</p>
+<p>依存树：子节点依存于父节点</p>
+<p>依存投射树：实线表示依存联结关系，位置低的成分依存于位置高的成分，虚线为投射线</p>
+<h3 id="_5">依存关系的五条公理<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ol>
+<li>一个句子中只有一个成分是独立的</li>
+<li>其他成分直接依存于某一成分</li>
+<li>任何一个成分都不能依存于两个或两个以上的成分</li>
+<li>如果A成分直接依存于B成分，而C成分在句子中位于A和B之间，那么C或者直接依存于B，或者直接依存于A和B之间的某一成分</li>
+<li>中心成分左右两面的其他成分相互不发生关系</li>
+</ol>
+<p>什么地方存在依存关系呢？比如合成词（如：国内）、短语（如：英雄联盟）很多地方都是</p>
+<h2 id="ltp">LTP依存关系标记<a class="headerlink" href="#ltp" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>关系</th>
+<th>简写</th>
+<th>英文</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主谓关系</td>
+<td>SBV</td>
+<td>subject-verb</td>
+<td>我送她一束花 (我 &lt;-- 送)</td>
+</tr>
+<tr>
+<td>动宾关系</td>
+<td>VOB</td>
+<td>直接宾语，verb-object</td>
+<td>我送她一束花 (送 --&gt; 花)</td>
+</tr>
+<tr>
+<td>间宾关系</td>
+<td>IOB</td>
+<td>间接宾语，indirect-object</td>
+<td>我送她一束花 (送 --&gt; 她)</td>
+</tr>
+<tr>
+<td>前置宾语</td>
+<td>FOB</td>
+<td>前置宾语，fronting-object</td>
+<td>他什么书都读 (书 &lt;-- 读)</td>
+</tr>
+<tr>
+<td>兼语</td>
+<td>DBL</td>
+<td>double</td>
+<td>他请我吃饭 (请 --&gt; 我)</td>
+</tr>
+<tr>
+<td>定中关系</td>
+<td>ATT</td>
+<td>attribute</td>
+<td>红苹果 (红 &lt;-- 苹果)</td>
+</tr>
+<tr>
+<td>状中结构</td>
+<td>ADV</td>
+<td>adverbial</td>
+<td>非常美丽 (非常 &lt;-- 美丽)</td>
+</tr>
+<tr>
+<td>动补结构</td>
+<td>CMP</td>
+<td>complement</td>
+<td>做完了作业 (做 --&gt; 完)</td>
+</tr>
+<tr>
+<td>并列关系</td>
+<td>COO</td>
+<td>coordinate</td>
+<td>大山和大海 (大山 --&gt; 大海)</td>
+</tr>
+<tr>
+<td>介宾关系</td>
+<td>POB</td>
+<td>preposition-object</td>
+<td>在贸易区内 (在 --&gt; 内)</td>
+</tr>
+<tr>
+<td>左附加关系</td>
+<td>LAD</td>
+<td>left adjunct</td>
+<td>大山和大海 (和 &lt;-- 大海)</td>
+</tr>
+<tr>
+<td>右附加关系</td>
+<td>RAD</td>
+<td>right adjunct</td>
+<td>孩子们 (孩子 --&gt; 们)</td>
+</tr>
+<tr>
+<td>独立结构</td>
+<td>IS</td>
+<td>independent structure</td>
+<td>两个单句在结构上彼此独立</td>
+</tr>
+<tr>
+<td>核心关系</td>
+<td>HED</td>
+<td>head</td>
+<td>指整个句子的核心</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">那么依存关系是怎么计算出来的呢？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>是通过机器学习和人工标注来完成的，机器学习依赖人工标注，那么都哪些需要我们做人工标注呢？分词词性、依存树库、语义角色都需要做人工标注，有了这写人工标注之后，就可以做机器学习来分析新的句子的依存句法了</p>
+<h3 id="ltp_1">LTP云平台怎么用？<a class="headerlink" href="#ltp_1" title="Permanent link">&para;</a></h3>
+<p>首先注册用户，得到每月免费20G的流量，在<a href="http://www.ltp-cloud.com">语言云</a>注册一个账号，注册好后登陆并进入你的<a href="http://www.ltp-cloud.com/dashboard/">dashboard</a>，可以看到自己唯一的<code>api_key</code>，我的保密，就不贴出来了，在dashboard里还可以查询自己流量使用情况</p>
+<p>具体使用方法如下（参考<a href="http://www.ltp-cloud.com/document">语言云API使用文档
+</a>）：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -i <span class="s2">&quot;http://api.ltp-cloud.com/analysis/?api_key=YourApiKey&amp;text=我是中国人。&amp;pattern=dp&amp;format=plain&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<p>把这里的<code>YourApiKey</code>换成你自己的api_key，得到结果如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>我_0 是_1 SBV
+是_1 -1 HED
+中国_2 人_3 ATT
+人_3 是_1 VOB
+。_4 是_1 WP
+</pre></div>
+</td></tr></table>
+
+<p>通过这个接口修改pattern参数可以做很多工作，比如：</p>
+<p>分词（pattern=ws）：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>GET http://api.ltp-cloud.com/analysis/?api_key=YourApiKey&amp;text=我是中国人。&amp;pattern=ws&amp;format=plain
+我 是 中国 人 。
+</pre></div>
+</td></tr></table>
+
+<p>词性标注(pattern=pos):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>GET http://api.ltp-cloud.com/analysis/?api_key=YourApiKey&amp;text=我是中国人。&amp;pattern=pos&amp;format=plain
+我_r 是_v 中国_ns 人_n 。_wp
+</pre></div>
+</td></tr></table>
+
+<p>命名实体识别(pattern=ner):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>GET http://api.ltp-cloud.com/analysis/?api_key=YourApiKey&amp;text=我是中国人。&amp;pattern=ner&amp;format=plain
+我 是 [中国]Ns 人 。
+</pre></div>
+</td></tr></table>
+
+<p>语义依存分析(pattern=sdp):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>GET http://api.ltp-cloud.com/analysis/?api_key=YourApiKey&amp;text=我是中国人。&amp;pattern=sdp&amp;format=plain
+我_0 是_1 Exp
+是_1 -1 Root
+中国_2 人_3 Nmod
+人_3 是_1 Clas
+。_4 是_1 mPunc
+</pre></div>
+</td></tr></table>
+
+<p>语义角色标注(pattern=srl):</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>GET http://api.ltp-cloud.com/analysis/?api_key=YourApiKey&amp;text=我是中国人。&amp;pattern=srl&amp;format=plain
+[我]A0 [是]v [中国 人]A1 。
+</pre></div>
+</td></tr></table>
+
+<p>免费终究会有限制，无论是流量还是速度还是一次性分析文本大小，LTP平台有有一定限制，这也是可以理解的，毕竟为大家开放了科研必备的资源和技术，成本也是需要控制的。</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../11.storage/" title="十一-0字节存储海量语料资源" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                十一-0字节存储海量语料资源
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../13.linguistic-model/" title="十三-探究语言模型" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                十三-探究语言模型
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.6cdc17f0.js"></script>
+      
+      <script>app.initialize({version:"0.17.2",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

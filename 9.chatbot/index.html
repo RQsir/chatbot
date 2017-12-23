@@ -1,0 +1,921 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.2.1">
+    
+    
+      
+        <title>九-聊天机器人怎么做 - 自己动手做聊天机器人</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.41c6761c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="自己动手做聊天机器人" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                自己动手做聊天机器人
+              </span>
+              <span class="md-header-nav__topic">
+                九-聊天机器人怎么做
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    自己动手做聊天机器人
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../1.knowledge/" title="一-涉及知识" class="md-nav__link">
+      一-涉及知识
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../2.nltk/" title="二-初识NLTK库" class="md-nav__link">
+      二-初识NLTK库
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../3.corpus/" title="三-语料与词汇资源" class="md-nav__link">
+      三-语料与词汇资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../4.pos-tagging/" title="四-自动化词性标注" class="md-nav__link">
+      四-自动化词性标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../5.text-classification/" title="五-文本分类" class="md-nav__link">
+      五-文本分类
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../6.extract/" title="六-结构化提取" class="md-nav__link">
+      六-结构化提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../7.grammar/" title="七-文法分析" class="md-nav__link">
+      七-文法分析
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../8.nlp-review/" title="八-自然语言处理" class="md-nav__link">
+      八-自然语言处理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        九-聊天机器人怎么做
+      </label>
+    
+    <a href="./" title="九-聊天机器人怎么做" class="md-nav__link md-nav__link--active">
+      九-聊天机器人怎么做
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="聊天机器人是可行的" class="md-nav__link">
+    聊天机器人是可行的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="聊天机器人工作原理是什么" class="md-nav__link">
+    聊天机器人工作原理是什么
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="聊天机器人的关键技术" class="md-nav__link">
+    聊天机器人的关键技术
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="聊天机器人的技术方法" class="md-nav__link">
+    聊天机器人的技术方法
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-nav__link">
+      十-词性标注与关键词提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../11.storage/" title="十一-0字节存储海量语料资源" class="md-nav__link">
+      十一-0字节存储海量语料资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../12.semantic-dependency/" title="十二-用语言云分析依存句法和语义依存" class="md-nav__link">
+      十二-用语言云分析依存句法和语义依存
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../13.linguistic-model/" title="十三-探究语言模型" class="md-nav__link">
+      十三-探究语言模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../14.participles-art/" title="十四-探究中文分词" class="md-nav__link">
+      十四-探究中文分词
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../15.probabilistic-model/" title="十五-概率图模型" class="md-nav__link">
+      十五-概率图模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../16.bag-material/" title="十六-自然语言处理中的囊中取物" class="md-nav__link">
+      十六-自然语言处理中的囊中取物
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../17.specific-mehtod/" title="十七-词性自动标注" class="md-nav__link">
+      十七-词性自动标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../18.tree/" title="十八-生成句法分析树" class="md-nav__link">
+      十八-生成句法分析树
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../19.understand/" title="十九-机器人是怎么理解“日后再说”的" class="md-nav__link">
+      十九-机器人是怎么理解“日后再说”的
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../20.pos-base-method/" title="二十-语义角色标注" class="md-nav__link">
+      二十-语义角色标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../21.tf-idf/" title="二十一-隐含语义索引模型" class="md-nav__link">
+      二十一-隐含语义索引模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../22.artificial-neural-network/" title="二十二-人工神经网络" class="md-nav__link">
+      二十二-人工神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../23.cnn/" title="二十三-用CNN做深度学习" class="md-nav__link">
+      二十三-用CNN做深度学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../24.nlp-deep-learning/" title="二十四-将深度学习应用到NLP" class="md-nav__link">
+      二十四-将深度学习应用到NLP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../25.word2vec/" title="二十五-word2vec的实现原理" class="md-nav__link">
+      二十五-word2vec的实现原理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../26.rnn/" title="二十六-递归神经网络(RNN)" class="md-nav__link">
+      二十六-递归神经网络(RNN)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../27.auto-faq/" title="二十七-自动问答" class="md-nav__link">
+      二十七-自动问答
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../28.subtitle-corpus/" title="二十八-基于美剧字幕的聊天语料库建设" class="md-nav__link">
+      二十八-基于美剧字幕的聊天语料库建设
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../29.corpus-1g/" title="二十九-近1GB的三千万聊天语料" class="md-nav__link">
+      二十九-近1GB的三千万聊天语料
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../30.tiny-rabbit/" title="三十-第一版聊天机器人小二兔" class="md-nav__link">
+      三十-第一版聊天机器人小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../31.directive/" title="三十一-把网站流量导向小二兔" class="md-nav__link">
+      三十一-把网站流量导向小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../32.word-vector/" title="三十二-用影视剧字幕语料库生成词向量" class="md-nav__link">
+      三十二-用影视剧字幕语料库生成词向量
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../33.lstm-rnn/" title="三十三-LSTM-RNN—有记忆的神经网络" class="md-nav__link">
+      三十三-LSTM-RNN—有记忆的神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../34.torch/" title="三十四-深度学习框架torch" class="md-nav__link">
+      三十四-深度学习框架torch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../35.lstm-learning/" title="三十五-一学会甄嬛体" class="md-nav__link">
+      三十五-一学会甄嬛体
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../36.tensorflow-session-graph/" title="三十六-tensorflow的session和graph" class="md-nav__link">
+      三十六-tensorflow的session和graph
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../37.tensorflow-lr/" title="三十七-tensorflow中的线性回归" class="md-nav__link">
+      三十七-tensorflow中的线性回归
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../38.make-chatbot/" title="三十八-聊天机器人构建流程" class="md-nav__link">
+      三十八-聊天机器人构建流程
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../39.gpu-server/" title="三十九-搭建一台GPU共享云服务" class="md-nav__link">
+      三十九-搭建一台GPU共享云服务
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../40.video-knowledge-point/" title="四十-视频之开篇宣言与知识点" class="md-nav__link">
+      四十-视频之开篇宣言与知识点
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../41.video-python/" title="四十一-视频之环境搭建与python基础" class="md-nav__link">
+      四十一-视频之环境搭建与python基础
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../42.practice/" title="四十二-从理论到实践开发聊天机器人1" class="md-nav__link">
+      四十二-从理论到实践开发聊天机器人1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../43.practice2/" title="四十三-从理论到实践开发聊天机器人2" class="md-nav__link">
+      四十三-从理论到实践开发聊天机器人2
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="聊天机器人是可行的" class="md-nav__link">
+    聊天机器人是可行的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="聊天机器人工作原理是什么" class="md-nav__link">
+    聊天机器人工作原理是什么
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="聊天机器人的关键技术" class="md-nav__link">
+    聊天机器人的关键技术
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="聊天机器人的技术方法" class="md-nav__link">
+    聊天机器人的技术方法
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>九-聊天机器人怎么做</h1>
+                
+                <p>聊天机器人到底该怎么做呢？我日思夜想，于是乎我做了一个梦，梦里面我完成了我的聊天机器人，它叫chatbot，经过我的一番盘问，它向我叙述了它的诞生记 </p>
+<h3 id="_1">聊天机器人是可行的<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><code>我：</code>chatbot，你好！</p>
+<p><code>chatbot：</code>你也好！</p>
+<p><code>我：</code>聊天机器人可行吗？</p>
+<p><code>chatbot：</code>你不要怀疑这是天方夜谭，我不就在这里吗？世界上还有很多跟我一样聪明的机器人呢，你听过IBM公司在2010年就研发出来了的Watson问答系统吗？它可比我要聪明100倍呢</p>
+<p><code>我：</code>噢，想起来了，据说Watson在智力竞赛中竟然战胜了人类选手。但是我了解到它有一些缺陷：因为它还只是对信息检索技术的综合运用，并没有进行各种语义关系的深刻计算，所以它能回答的问题也仅限于实事类的问题，所以它能赢得也就是知识类的智力竞赛，如果你给它出个脑筋急转弯，它就不行了</p>
+<p><code>chatbot：</code>是的呢，所以你任重道远啊</p>
+<h3 id="_2">聊天机器人工作原理是什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>我：chatbot，我问的每一句话，你都是怎么处理并回答我的呢？</p>
+<p>chatbot：我身体里有三个重要模块：提问处理模块、检索模块、答案抽取模块。三个模块一起工作，就能回答你的问题啦</p>
+<p>我：是嘛，那么这个提问处理模块是怎么工作的呢？</p>
+<p>chatbot：提问处理模块要做三项重要工作：查询关键词生成、答案类型确定、句法和语义分析。</p>
+<p>我：那么这个查询关。。。</p>
+<p>chatbot：别急别急，听我一个一个讲给你听。查询关键词生成，就是从你的提问中提取出关键的几个关键词，因为我本身是一个空壳子，需要去网上查找资料才能回答你，而但网上资料那么多，我该查哪些呢？所以你的提问就有用啦，我找几个中心词，再关联出几个扩展词，上网一搜，一大批资料就来啦，当然这些都是原始资料，我后面要继续处理。再说答案类型确定，这项工作是为了确定你的提问属于哪一类的，如果你问的是时间、地点，和你问的是技术方案，那我后面要做的处理是不一样的。最后再说这个句法和语义分析，这是对你问题的深层含义做一个剖析，比如你的问题是：聊天机器人怎么做？那么我要知道你要问的是聊天机器人的研发方法</p>
+<p>我：原来是这样，提问处理模块这三项工作我了解了，那么检索模块是怎么工作的呢？</p>
+<p>chatbot：检索模块跟搜索引擎比较像，就是根据查询关键词所信息检索，返回句子或段落，这部分就是下一步要处理的原料</p>
+<p>我：那么答案抽取模块呢？</p>
+<p>chatbot：答案抽取模块可以说是计算量最大的部分了，它要通过分析和推理从检索出的句子或段落里抽取出和提问一致的实体，再根据概率最大对候选答案排序，注意这里是“候选答案”噢，也就是很难给出一个完全正确的结果，很有可能给出多个结果，最后还在再选出一个来</p>
+<p>我：那么我只要实现这三个模块，就能做成一个你喽？</p>
+<p>chatbot：是的</p>
+<h3 id="_3">聊天机器人的关键技术<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>我：chatbot，小弟我知识匮乏，能不能告诉我都需要学哪些关键技术才能完成我的梦想</p>
+<p>chatbot：小弟。。。我还没满月。说到关键技术，那我可要列一列了，你的任务艰巨了：</p>
+<p>1）海量文本知识表示：网络文本资源获取、机器学习方法、大规模语义计算和推理、知识表示体系、知识库构建；</p>
+<p>2）问句解析：中文分词、词性标注、实体标注、概念类别标注、句法分析、语义分析、逻辑结构标注、指代消解、关联关系标注、问句分类（简单问句还是复杂问句、实体型还是段落型还是篇章级问题）、答案类别确定；</p>
+<p>3）答案生成与过滤：候选答案抽取、关系推演（并列关系还是递进关系还是因果关系）、吻合程度判断、噪声过滤</p>
+<h3 id="_4">聊天机器人的技术方法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>我：chatbot，我对聊天机器人的相关技术总算有所了解了，但是我具体要用什么方法呢？</p>
+<p>chatbot：看你这么好学，那我就多给你讲一讲。聊天机器人的技术可以分成四种类型：1）基于检索的技术；2）基于模式匹配的技术；3）基于自然语言理解的技术；4）基于统计翻译模型的技术。这几种技术并不是都要实现，而是选其一，听我给你说说他们的优缺点，你就知道该选哪一种了。基于检索的技术就是信息检索技术，它简单易实现，但无法从句法关系和语义关系给出答案，也就是搞不定推理问题，所以直接pass掉。基于模式匹配的技术就是把问题往已经梳理好的几种模式上去靠，这种做推理简单，但是模式我们涵盖不全，所以也pass掉。基于自然语言理解就是把浅层分析加上句法分析、语义分析都融入进来做的补充和改进。基于统计翻译就是把问句里的疑问词留出来，然后和候选答案资料做配对，能对齐了就是答案，对不齐就对不起了，所以pass掉。选哪个知道了吗？</p>
+<p>我：知道了！基于自然语言理解的技术！so easy！妈妈再也不用担心我的学习！o(╯□╰)o</p>
+<p>chatbot：好，那我的任务结束啦，我该走了，再见！</p>
+<p>我：不要走——不要走——ka ji ma——</p>
+<p>在呼唤chatbot的声音中，我从梦中醒来，这时我才意识到这是一个梦，揉揉双眼，突然发现床边有一张纸，上面写着：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>你会成功的！读了这篇文章的人也会成功的！加油！
+
+                                     chatbot
+</pre></div>
+</td></tr></table>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../8.nlp-review/" title="八-自然语言处理" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                八-自然语言处理
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                十-词性标注与关键词提取
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.6cdc17f0.js"></script>
+      
+      <script>app.initialize({version:"0.17.2",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

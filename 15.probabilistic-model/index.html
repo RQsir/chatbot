@@ -1,0 +1,997 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.2.1">
+    
+    
+      
+        <title>十五-概率图模型 - 自己动手做聊天机器人</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.41c6761c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="自己动手做聊天机器人" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                自己动手做聊天机器人
+              </span>
+              <span class="md-header-nav__topic">
+                十五-概率图模型
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    自己动手做聊天机器人
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="概述" class="md-nav__link">
+      概述
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../1.knowledge/" title="一-涉及知识" class="md-nav__link">
+      一-涉及知识
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../2.nltk/" title="二-初识NLTK库" class="md-nav__link">
+      二-初识NLTK库
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../3.corpus/" title="三-语料与词汇资源" class="md-nav__link">
+      三-语料与词汇资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../4.pos-tagging/" title="四-自动化词性标注" class="md-nav__link">
+      四-自动化词性标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../5.text-classification/" title="五-文本分类" class="md-nav__link">
+      五-文本分类
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../6.extract/" title="六-结构化提取" class="md-nav__link">
+      六-结构化提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../7.grammar/" title="七-文法分析" class="md-nav__link">
+      七-文法分析
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../8.nlp-review/" title="八-自然语言处理" class="md-nav__link">
+      八-自然语言处理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../9.chatbot/" title="九-聊天机器人怎么做" class="md-nav__link">
+      九-聊天机器人怎么做
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../10.pos-ke/" title="十-词性标注与关键词提取" class="md-nav__link">
+      十-词性标注与关键词提取
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../11.storage/" title="十一-0字节存储海量语料资源" class="md-nav__link">
+      十一-0字节存储海量语料资源
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../12.semantic-dependency/" title="十二-用语言云分析依存句法和语义依存" class="md-nav__link">
+      十二-用语言云分析依存句法和语义依存
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../13.linguistic-model/" title="十三-探究语言模型" class="md-nav__link">
+      十三-探究语言模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../14.participles-art/" title="十四-探究中文分词" class="md-nav__link">
+      十四-探究中文分词
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        十五-概率图模型
+      </label>
+    
+    <a href="./" title="十五-概率图模型" class="md-nav__link md-nav__link--active">
+      十五-概率图模型
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="首先我们说说什么是图论" class="md-nav__link">
+    首先我们说说什么是图论
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="再说说概率论" class="md-nav__link">
+    再说说概率论
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="提前解释一下概率图模型里的几个常见词汇" class="md-nav__link">
+    提前解释一下概率图模型里的几个常见词汇
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="再说概率图模型" class="md-nav__link">
+    再说概率图模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="贝叶斯网络" class="md-nav__link">
+    贝叶斯网络
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="马尔可夫模型和隐马尔可夫模型" class="md-nav__link">
+    马尔可夫模型和隐马尔可夫模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="最大熵模型" class="md-nav__link">
+    最大熵模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="条件随机场" class="md-nav__link">
+    条件随机场
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../16.bag-material/" title="十六-自然语言处理中的囊中取物" class="md-nav__link">
+      十六-自然语言处理中的囊中取物
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../17.specific-mehtod/" title="十七-词性自动标注" class="md-nav__link">
+      十七-词性自动标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../18.tree/" title="十八-生成句法分析树" class="md-nav__link">
+      十八-生成句法分析树
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../19.understand/" title="十九-机器人是怎么理解“日后再说”的" class="md-nav__link">
+      十九-机器人是怎么理解“日后再说”的
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../20.pos-base-method/" title="二十-语义角色标注" class="md-nav__link">
+      二十-语义角色标注
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../21.tf-idf/" title="二十一-隐含语义索引模型" class="md-nav__link">
+      二十一-隐含语义索引模型
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../22.artificial-neural-network/" title="二十二-人工神经网络" class="md-nav__link">
+      二十二-人工神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../23.cnn/" title="二十三-用CNN做深度学习" class="md-nav__link">
+      二十三-用CNN做深度学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../24.nlp-deep-learning/" title="二十四-将深度学习应用到NLP" class="md-nav__link">
+      二十四-将深度学习应用到NLP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../25.word2vec/" title="二十五-word2vec的实现原理" class="md-nav__link">
+      二十五-word2vec的实现原理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../26.rnn/" title="二十六-递归神经网络(RNN)" class="md-nav__link">
+      二十六-递归神经网络(RNN)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../27.auto-faq/" title="二十七-自动问答" class="md-nav__link">
+      二十七-自动问答
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../28.subtitle-corpus/" title="二十八-基于美剧字幕的聊天语料库建设" class="md-nav__link">
+      二十八-基于美剧字幕的聊天语料库建设
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../29.corpus-1g/" title="二十九-近1GB的三千万聊天语料" class="md-nav__link">
+      二十九-近1GB的三千万聊天语料
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../30.tiny-rabbit/" title="三十-第一版聊天机器人小二兔" class="md-nav__link">
+      三十-第一版聊天机器人小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../31.directive/" title="三十一-把网站流量导向小二兔" class="md-nav__link">
+      三十一-把网站流量导向小二兔
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../32.word-vector/" title="三十二-用影视剧字幕语料库生成词向量" class="md-nav__link">
+      三十二-用影视剧字幕语料库生成词向量
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../33.lstm-rnn/" title="三十三-LSTM-RNN—有记忆的神经网络" class="md-nav__link">
+      三十三-LSTM-RNN—有记忆的神经网络
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../34.torch/" title="三十四-深度学习框架torch" class="md-nav__link">
+      三十四-深度学习框架torch
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../35.lstm-learning/" title="三十五-一学会甄嬛体" class="md-nav__link">
+      三十五-一学会甄嬛体
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../36.tensorflow-session-graph/" title="三十六-tensorflow的session和graph" class="md-nav__link">
+      三十六-tensorflow的session和graph
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../37.tensorflow-lr/" title="三十七-tensorflow中的线性回归" class="md-nav__link">
+      三十七-tensorflow中的线性回归
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../38.make-chatbot/" title="三十八-聊天机器人构建流程" class="md-nav__link">
+      三十八-聊天机器人构建流程
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../39.gpu-server/" title="三十九-搭建一台GPU共享云服务" class="md-nav__link">
+      三十九-搭建一台GPU共享云服务
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../40.video-knowledge-point/" title="四十-视频之开篇宣言与知识点" class="md-nav__link">
+      四十-视频之开篇宣言与知识点
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../41.video-python/" title="四十一-视频之环境搭建与python基础" class="md-nav__link">
+      四十一-视频之环境搭建与python基础
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../42.practice/" title="四十二-从理论到实践开发聊天机器人1" class="md-nav__link">
+      四十二-从理论到实践开发聊天机器人1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../43.practice2/" title="四十三-从理论到实践开发聊天机器人2" class="md-nav__link">
+      四十三-从理论到实践开发聊天机器人2
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="首先我们说说什么是图论" class="md-nav__link">
+    首先我们说说什么是图论
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="再说说概率论" class="md-nav__link">
+    再说说概率论
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="提前解释一下概率图模型里的几个常见词汇" class="md-nav__link">
+    提前解释一下概率图模型里的几个常见词汇
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="再说概率图模型" class="md-nav__link">
+    再说概率图模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="贝叶斯网络" class="md-nav__link">
+    贝叶斯网络
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="马尔可夫模型和隐马尔可夫模型" class="md-nav__link">
+    马尔可夫模型和隐马尔可夫模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="最大熵模型" class="md-nav__link">
+    最大熵模型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="条件随机场" class="md-nav__link">
+    条件随机场
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>十五-概率图模型</h1>
+                
+                <p>概率图模型是概率论和图论的结合，经常见到的贝叶斯网络、马尔可夫模型、最大熵模型、条件随机场都属于概率图模型，这些模型有效的解决了很多实际问题，比如自然语言处理中的词性标注、实体识别等，书里的描述都公式纵横、晦涩难懂，我们不妨试试轻轻松松的来说一说概率图模型 </p>
+<h3 id="_1">首先我们说说什么是图论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>能点进这篇文章说明你一定是有一定数学基础的，所以我做个比喻，你来看看是不是这么回事。糖葫芦吃过吧？几个山楂串在一根杆上，这其实就是一个图。</p>
+<p>稍稍正式一点说：图就是把一些孤立的点用线连起来，任何点之间都有可能连着。它区别于树，树是有父子关系，图没有。</p>
+<p>再深入一点点：从质上来说，图可以表达的某些事物之间的关联关系，也可以表达的是一种转化关系；从量上来说，它能表达出关联程度，也能表达出转化的可能性大小</p>
+<p>图论一般有什么用途呢？著名的七桥问题、四色问题、欧拉定理都是在图论基础上说事儿的</p>
+<h3 id="_2">再说说概率论<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>概率论从中学到大学再到工作中都在学，它原理很简单：投个硬币出现人头的概率是1/2，最常用的就是条件概率P(B|A)，联合概率P(A,B)，贝叶斯公式:P(B|A)=P(A|B)P(B)/P(A)，各种估计方法。</p>
+<h3 id="_3">提前解释一下概率图模型里的几个常见词汇<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>贝叶斯(Bayes)：无论什么理论什么模型，只要一提到他，那么里面一定是基于条件概率P(B|A)来做文章的。ps：贝叶斯老爷爷可是18世纪的人物，他的理论到现在还这么火，可见他的影响力绝不下于牛顿、爱因斯坦</p>
+<p>马尔可夫(Markov)：无论什么理论什么模型，只要一提到他，那么里面一定有一条链式结构或过程，前n个值决定当前这个值，或者说当前这个值跟前n个值有关</p>
+<p>熵(entropy)：熵有火字旁，本来是一个热力学术语，表示物质系统的混乱状态。延伸数学上表达的是一种不确定性。延伸到信息论上是如今计算机网络信息传输的基础理论，不确定性函数是f(p)=-logp，信息熵H(p)=-∑plogp。提到熵必须要提到信息论鼻祖香农(Shannon)</p>
+<p>场(field)：只要在数学里见到场，它都是英文里的“域”的概念，也就是取值空间，如果说“随机场”，那么就表示一个随机变量能够赋值的全体空间</p>
+<h3 id="_4">再说概率图模型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>概率图模型一般是用图来说明，用概率来计算的。所以为了清晰的说明，我们每一种方法我尽量配个图，并配个公式。</p>
+<p>首先，为了脑子里有个体系，我们做一个分类，分成有向图模型和无向图模型，顾名思义，就是图里面的边是否有方向。那么什么样的模型的边有方向，而什么样的没方向呢？这个很好想到，有方向的表达的是一种推演关系，也就是在A的前提下出现了B，这种模型又叫做生成式模型。而没有方向表达的是一种“这样就对了”的关系，也就是A和B同时存在就对了，这种模型又叫做判别式模型。生成式模型一般用联合概率计算(因为我们知道A的前提了，可以算联合概率)，判别式模型一般用条件概率计算(因为我们不知道前提，所以只能"假设"A条件下B的概率)。生成式模型的代表是：n元语法模型、隐马尔可夫模型、朴素贝叶斯模型等。判别式模型的代表是：最大熵模型、支持向量机、条件随机场、感知机模型等</p>
+<h3 id="_5">贝叶斯网络<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>按照前面说的，提到贝叶斯就是条件概率，所以也就是生成式模型，也就是有向图模型。</p>
+<p>为了说明什么是贝叶斯网络，我从网上盗取一个图</p>
+<p><img alt="" src="../imgs/1418fbe0688b41926f6de2ee0e98c4e4830208d1.png" /></p>
+<p>图中每一个点都可能未True或False，他们的概率是已知的，比如x7的概率需要有x4和x5来决定，可能是这样的</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>x4 x5  T   F
+
+T  T   0.5 0.5
+
+T  F   0.4 0.6
+
+F  T   0.7 0.3
+
+F  F   0.2 0.8
+</pre></div>
+</td></tr></table>
+
+<p>那么可以通过上面的贝叶斯网络来估计如果x1为False情况下x6为True的概率：</p>
+<p>P(x6=T|x1=F)=P(x6=T,x1=F)/P(x1=F)</p>
+<p>这个值继续推导，最终可以由每个节点的概率数据计算求得，这么说来，贝叶斯网络模型可以通过样本学习来估计每个节点的概率，从而达到可以预测各种问题的结果</p>
+<p>贝叶斯网络能够在已知有限的、不完整的、不确定信息条件下进行学习推理，所以广泛应用在故障诊断、维修决策、汉语自动分词、词义消歧等问题上</p>
+<h3 id="_6">马尔可夫模型和隐马尔可夫模型<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>按照前面说的，提到马尔可夫就是一个值跟前面n个值有关，所以也就是条件概率，也就是生成式模型，也就是有向图模型。</p>
+<p>继续盗图</p>
+<p><img alt="" src="../imgs/ea49002e7337dc908cfc169d0e4c1b612a3d66ab.png" /></p>
+<p>音乐的每一个音不是随意作出来的，是根据曲子的风格、和弦、大小调式等来决定的，但是因为可选的音高有多种，也就出现了无数美妙的旋律。因为有约束，所以其实可以说新的音和前面的n个音有关，这其实是一个马尔可夫模型可以解释的事情。</p>
+<p>马尔可夫模型还可以看成是一个关于时间t的状态转换过程，也就是随机的有限状态机，那么状态序列的概率可以通过计算形成该序列所有状态之间转移弧上的概率乘积得出。</p>
+<p>如果说这个马尔可夫是两阶的，那么转移概率可能是这个样子：</p>
+<p><img alt="" src="../imgs/87b372efdfd3d27d1c76712a362f14287d95d1e3.png" /></p>
+<p>当然后面的概率只是举了个例子，这种情况由前两列决定的第三列任意值都会有一个概率</p>
+<p>我们通过训练样本来得出每一个概率值，这样就可以通过训练出的模型来根据前两个音是什么而预测下一个音是1、2、3、4、5任意一个的概率是多少了，也就是可以自动作曲了，当然这样做出的曲子肯定是一个无线循环的旋律，你猜猜为什么。</p>
+<p>那么我们再说隐马尔可夫模型，这里的“隐”指的是其中某一阶的信息我们不知道，就像是我们知道人的祖先是三叶虫，但是由三叶虫经历了怎样的演变过程才演变到人的样子我们是不知道的，我们只能通过化石资料了解分布信息，如果这类资料很多，那么就可以利用隐马尔可夫模型来建模，因为缺少的信息较多，所以这一模型的算法比较复杂，比如前向算法、后向算法之类晦涩的东西就不说了。相对于原理，我们更关注它的应用，隐马尔可夫模型广泛应用在词性标注、中文分词等，为什么能用在这两个应用上呢？仔细想一下能看得出来，比如中文分词，最初你是不知道怎么分词的，前面的词分出来了，你才之后后面的边界在哪里，但是当你后面做了分词之后还要验证前面的分词是否正确，这样前后有依赖关系，而不确定中间状态的情况最适合用隐马尔可夫模型来解释</p>
+<h3 id="_7">最大熵模型<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>按照前面所说的，看到熵那么一定会用到H(p)=-∑plogp，怎么理解最大熵模型呢？我们的最终目的是想知道在某一个信息条件B下，得出某种可能的结果A的最大的概率，也就是条件概率P(A|B)最大的候选结果。因为最大熵就是不确定性最大，其实也就是条件概率最大，所以求最大的条件概率等同于求最大熵，而我们这里的熵其实是H(p)=H(A|B)=-∑p(b)p(a|b)log(p(a|b))，为了使用训练数据做估计，这里的p(a|b)可以通过训练数据的某些特征来估计，比如这些特征是fi(a,b)，那么做模型训练的过程就编程了训练∑λf(a,b)中的λ参数的过程，至此就有些像机器学习的线性回归了，该怎么做就清晰了。所以其实最大熵模型就是利用熵的原理和熵的公式来用另外一种形式来描述具有概率规律的现实的</p>
+<h3 id="_8">条件随机场<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>场表示取值范围，随机场表示随机变量有取值范围，也就是每个随机变量有固定的取值，条件指的是随机变量的取值由一定的条件概率决定，而这里的条件来自于我们有一些观察值，这是它区别于其他随机场的地方。条件随机场也可以看做是一个无向图模型，它特殊就特殊在给定观察序列X时某个特定的标记序列Y的概率是一个指数函数exp(∑λt+∑μs)，其中t是转移函数，s是状态函数，我们需要训练的是λ和μ。条件随机场主要应用在标注和切分有序数据上，尤其在自然语言处理、生物信息学、机器视觉、网络智能等方面</p>
+<p>总结一下，概率图模型包括多种结合概率论和图论的模型，根据特定场景特定需求选择不同的模型，每种模型的参数都需要大量样本训练得出，每种模型都是用来根据训练出来的概率做最优结论选择的，比如根据训练出来的模型对句子做最正确的词性标注、实体标注、分词序列等，本文只是从理念上的解释和总结，真的用到某一种模型还是需要深入研究原理和公式推导以及编程实现，那就不是本文这种小篇幅能够解释的完的了，等我们后面要遇到必须用某一种模型来实现时再狠狠地深入一下。</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../14.participles-art/" title="十四-探究中文分词" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                十四-探究中文分词
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../16.bag-material/" title="十六-自然语言处理中的囊中取物" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                十六-自然语言处理中的囊中取物
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.6cdc17f0.js"></script>
+      
+      <script>app.initialize({version:"0.17.2",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
