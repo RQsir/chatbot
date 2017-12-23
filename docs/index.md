@@ -1,4 +1,10 @@
-# 目录
+#概述
+
+## 关于作者
+
+本文整理自[Welcome Big Data ITors!](http://www.shareditor.com/)
+
+## 目录
 
 * 一-涉及知识
 * 二-初识 NLTK 库
