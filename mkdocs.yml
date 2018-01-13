@@ -1,4 +1,5 @@
 site_name: 自己动手做聊天机器人
+copyright: '版权 &copy; 2016 - 2017 shareditor.com'
 pages:
   - 概述: index.md
   - 一-涉及知识: 1.knowledge.md
